@@ -10,13 +10,8 @@ http://jetbrains.com/
 ## 数组的方法
 - es5 es6
 ```
-pop push shifit unshift indexof slice lastIndexOf reverse sort join map forEach filter for of splice includes concat  some every reduce find
+pop push shift unshift indexof slice lastIndexOf reverse sort join map forEach filter for of splice includes concat some every reduce find
 ```
-
-```
-Array.from
-```
-
 
 
 
