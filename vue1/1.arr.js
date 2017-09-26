@@ -60,3 +60,12 @@ if(index==1){ //index== 1是循环的第一次 加出来的是数字
     return prev.price*prev.count+ next.price*next.count
 }
 return prev+next.price*next.count;*/
+
+let mArr = [{price:20,count:1},{price:39,count:2},{price:39,count:2}];
+let count = mArr.reduce(function (prev,next,index) {
+    console.log(prev,next,index);
+    return prev + next.price*next.count;
+},0);
+console.log(count);
+
+
