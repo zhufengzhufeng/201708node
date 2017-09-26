@@ -68,12 +68,13 @@ npm install vue --save
 - v-html 展示成html
 - v-text 可以解决闪烁问题（解决单行闪烁）{{}}是v-text简写
 - v-for  循环 可以循环数组 对象 字符串
-```
-v-for="value in arr"
-v-for="(item,index) in arr"
-```
-
+    ```
+    v-for="value in arr"
+    v-for="(item,index) in arr"
+    ```
 - v-clock 闪烁防止
+- v-show 操着的是样式
+- v-if 操作的是DOM
 
 ## 设置快捷键
 - file => settings =>live template => + => 写快捷键的的名字 => 快捷键的内容 => define

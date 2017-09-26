@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+<!--bootstrap 颜色 default 代表灰色 warning 黄色 danger 红色 success 绿色 primary 蓝色 info 浅蓝色 -->
+<div id="app">
+    <div class="container">
+        <table class="table table-bordered">
+            <caption class="h2 text-center">商品列表</caption>
+            <tr class="text-danger">
+                <th class="text-center">全选</th>
+                <th class="text-center">商品</th>
+                <th class="text-center">单价</th>
+                <th class="text-center">数量</th>
+                <th class="text-center">小计</th>
+                <th class="text-center">操作</th>
+            </tr>
+            <tr class="text-center">
+                <td><input type="checkbox"></td>
+                <td>Vue.js 前端开发 快速入门与专业应用</td>
+                <td>36.6</td>
+                <td><input type="text"></td>
+                <td>300</td>
+                <td><button class="btn btn-danger btn-xs">删除</button></td>
+            </tr>
+        </table>
+        <form>
+            <div class="form-group">
+                <label for="productName" class="control-label">商品名称</label>
+                <input type="text" id="productName" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="productPrice" class="control-label">商品价格</label>
+                <input type="text" id="productPrice" class="form-control">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" type="button">添加</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el:'#app',
+        data:{
+            products:[
+                {checked:false,productName:'Vue.js 前端开发 快速入门与专业应用',productPrice:36.6,productCount:3},
+                {checked:false,productName:'Vue.js 前端开发 快速入门与专业应用',productPrice:36.6,productCount:3},
+                {checked:false,productName:'Vue.js 前端开发 快速入门与专业应用',productPrice:36.6,productCount:3}
+            ]
+        }
+    })
+</script>
+</body>
+</html>
