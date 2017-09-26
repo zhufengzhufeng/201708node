@@ -62,3 +62,18 @@ npm install vue --save
 - 可以实现双向数据绑定
 - 指令 指令就是一个行间属性,而且必须以v-开头，一种是官方提供的，还有一种就是自定义的
 
+## 指令(行间属性)
+- v-model 双向绑定
+- v-once 绑定一次
+- v-html 展示成html
+- v-text 可以解决闪烁问题（解决单行闪烁）{{}}是v-text简写
+- v-for  循环 可以循环数组 对象 字符串
+```
+v-for="value in arr"
+v-for="(item,index) in arr"
+```
+
+- v-clock 闪烁防止
+
+## 设置快捷键
+- file => settings =>live template => + => 写快捷键的的名字 => 快捷键的内容 => define

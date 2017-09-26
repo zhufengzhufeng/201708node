@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="msg">
+    <!--只绑定一次,数据变化后不更新 v-once-->
+    <div v-once>
+        {{msg}}
+    </div>
+    <div v-html="msg"></div>
+    <div v-text="msg"></div>
+    <!--{{}}可以做运算,可以做三元表达式 不能写if else 不能写js-->
+    {{msg==='zfpx'?'帅':'丑'}}
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el:'#app',
+        data:{
+            msg:'<h1>zfpx</h1>'
+        }
+    });
+    //vm.$set 添加新的属性 vm.$data 取data  vm.$el 取的是元素
+    console.log(vm.$el);
+</script>
+</body>
+</html>

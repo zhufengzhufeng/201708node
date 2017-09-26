@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--vue 中方法可以带括号也可以不带括号,v-on可以简写成@事件-->
+    <!--如果写括号需要手动传入$event属性-->
+    <button @mousedown="a($event)">点我啊！</button>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el:'#app',
+        data:{},
+        methods:{ //methods存放的就是方法，不能和data中的内容重名，最后都会合并到vm的实例上 被vm所代理 ，method中this指向的都是vm实例
+            a(e){ //不能使用箭头函数
+                console.log(this)
+            }
+        }
+    })
+</script>
+</body>
+</html>
+
+<div id="aa" onclick="fn(event)">123123</div>
+<script>
+    console.log(app.onclick)
+    function fn(e) {
+        alert(this)
+    }
+</script>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        [v-cloak]{display: none}
+    </style>
+</head>
+<body>
+<div id="app" >
+    <!--先让带有v-cloak的元素隐藏掉，当vue加载好后 会自动将v-cloak这个属性移除掉-->
+    <ul v-cloak>
+        <li v-for="(phone,index) in iphones">{{index+1}} {{phone.name}}
+            <ul>
+                <li v-for="(t,index2) in phone.type">{{index+1}}.{{index2+1}}{{t}}</li>
+            </ul>
+        </li>
+    </ul>
+    <ul>
+        <li v-for="(val,key) in school">{{key}}{{val}}</li>
+    </ul>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el:'#app',
+        data:{
+            aaa:'12345678',
+            flag:true,
+            iphones:[
+                {name:'iphone 8 ',type:['黑色','白色']},
+                {name:'iphone 7 plus ',type:['红色']},
+                {name:'iphone x ',type:['黑色']}
+            ],
+            school:{address:'东大街',age:8,name:'zfpx'}
+        }
+    })
+</script>
+</body>
+</html>

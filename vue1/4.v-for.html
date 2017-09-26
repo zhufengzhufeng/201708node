@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--要循环谁 就将v-for写在谁的身上-->
+    <ul>
+        <!--fruit是自己声明的一个变量-->
+        <li v-for="(fruit,index) in fruits">{{index}}{{fruit}}</li>
+    </ul>
+</div>
+
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    //  循环 1.数组 2.对象 forEach for of
+    let vm = new Vue({
+        el:'#app',
+        data:{
+            fruits:['芒果','荔枝','榴莲'],
+            iphones:[
+                {name:'iphone 8 ',type:['黑色','白色']},
+                {name:'iphone 7 plus ',type:['红色']},
+                {name:'iphone x ',type:['黑色']}
+
+            ]
+        }
+    })
+</script>
+</body>
+</html>
