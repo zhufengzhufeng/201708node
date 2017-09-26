@@ -14,8 +14,19 @@ let a = (x,y) => x+y;*/
 //         return a+b;
 //     }
 // }
-let x = a => b => a+b; //高阶函数 超过俩箭头的就是高阶函数
-console.log(x(1)(2));
+/*let x = a => {
+    return b=>{
+        return a+b;
+    }
+}*/
+let x = a => b => c => a+b+c; //高阶函数 超过俩箭头的就是高阶函数
+console.log(x(1)(2)(3));
+
+// 最外层函数 可以不使用箭头函数
+let newFunc = (a,...rest)=>{ //剩余运算符
+    console.log(...rest) ;// 展开运算符
+};
+newFunc(1,2,3);
 
 /*
 let obj = {
