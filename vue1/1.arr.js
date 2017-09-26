@@ -41,9 +41,22 @@ console.log(nArr);
 //2.当前项 next
 //3.当前项的索引
 //4.原数组
-let pArr = [{price:20,count:1},{price:39,count:2},{price:56,count:5}];
-let r = arr.reduce(function (prev,next) {
-    //第一次的返回值 会做为下一次的上一次
-    return prev+next;
-});
+let pArr = [{price:20,count:1},{price:39,count:2},{price:56,count:5},{price:56,count:5}];
+let r = pArr.reduce(function (prev,next,index) {
+    return prev+next.price*next.count;
+},0); //在第二个参数上指定第一次的prev
 console.log(r);
+//数组扁平化
+let flatArr = [[1,2,3],[4,5,6],[7,8,9]].reduce(function (prev,next) {
+    return prev.concat(next);
+});
+console.log(flatArr);
+
+
+
+//第一次的返回值 会做为下一次的上一次
+/*
+if(index==1){ //index== 1是循环的第一次 加出来的是数字
+    return prev.price*prev.count+ next.price*next.count
+}
+return prev+next.price*next.count;*/
