@@ -5,6 +5,28 @@
     <title>Document</title>
 </head>
 <body>
-
+<div id="app">
+    <!--取值表达式 小胡子语法 moustache;-->
+    <p>{{msg}}</p> {{school.name}} {{school.age}} {{school.address}}
+</div>
+<!--
+    1.使用vue 有两种方式  直接引用 工程化
+    2.你使用vue会给你一个Vue(类)
+-->
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    // 需要一块json 需要一个位置承载这些数据
+    let vm = new Vue({ //不兼容ie8以下 包括ie8  根实例
+        el:'#app', // 是一个选择器 querySelector ，不能选择body 或者 html
+        data:{ //所有数据都要先声明一下，这个data最终会被这个实例代理
+             msg:'hello world zfpx',
+             school:{name:'zfpx',age:8}
+        }
+    });
+    // 如果当前属性声明时不存在，新增的属性不会导致视图变化，如果后增加属性需要 $set方法
+    // vm.school = {name:'xxx',age:9,address:'xxx'} 替换掉原有属性
+    //vm.$set(vm.school,'address','回龙观'); 新增属性
+    //可以通过修改数据 来更改视图。
+</script>
 </body>
 </html>

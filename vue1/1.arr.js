@@ -64,7 +64,8 @@ return prev+next.price*next.count;*/
 let mArr = [{price:20,count:1},{price:39,count:2},{price:39,count:2}];
 let count = mArr.reduce(function (prev,next,index) {
     console.log(prev,next,index);
-    return prev + next.price*next.count;
+
+    return  prev + next.price*next.count;
 },0);
 console.log(count);
 

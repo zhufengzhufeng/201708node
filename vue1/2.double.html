@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<div id="app">
+    <!--实现双向绑定,见到输入框就是v-model,会自动的将数据绑定到输入框的value中-->
+    <input type="text" v-model="msg">
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el:'#app',
+        data:{
+            msg:'zfpx'
+        }
+    })
+</script>
+</body>
+</html>

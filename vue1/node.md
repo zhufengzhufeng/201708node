@@ -33,3 +33,32 @@ pop push shift unshift indexof slice lastIndexOf reverse sort join map forEach f
 - ajax获取 vue-resource / axios
 - vue + vue-router + vuex + vue-cli + axios = vue全家桶
 
+> vue由很多部分组成，可以随意选择搭配，组成自己想要的框架
+
+## 为什么学vue？
+- 面试要问
+- 用js 分为 DOM BOM ,操作dom很耗性能，vue数据驱动不建议直接操作dom，操作的是"数据". 虚拟dom 再内存中创建一个表示dom结构的对象，当需要渲染时将这个对象映射成dom
+
+## MVC
+- model数据模型
+- view 视图
+- controller控制器
+
+## MVVM 双向数据绑定（数据变化会影响视图 视图变化会影响数据）
+- model
+- view
+- viewModel
+
+> 只有表单元素 支持双向数据绑定
+
+## 下载vue  npm(node pacakge manager)
+```
+npm init -y
+npm install vue --save
+
+```
+
+## 表单元素
+- 可以实现双向数据绑定
+- 指令 指令就是一个行间属性,而且必须以v-开头，一种是官方提供的，还有一种就是自定义的
+
