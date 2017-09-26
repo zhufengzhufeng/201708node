@@ -8,9 +8,9 @@
     </style>
 </head>
 <body>
-<div id="app" >
+<div id="app">
     <!--先让带有v-cloak的元素隐藏掉，当vue加载好后 会自动将v-cloak这个属性移除掉-->
-    <ul v-cloak>
+    <ul >
         <li v-for="(phone,index) in iphones">{{index+1}} {{phone.name}}
             <ul>
                 <li v-for="(t,index2) in phone.type">{{index+1}}.{{index2+1}}{{t}}</li>

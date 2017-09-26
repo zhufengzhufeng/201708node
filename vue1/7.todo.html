@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--如果要获取输入框的内容 需要使用up ,可以使用键盘修饰符-->
+    <input type="text" v-model="todo" @keydown.13="add">
+    <ul>
+        <li v-for="t in todos">{{t}}</li>
+    </ul>
+    <!--先是没有这个dom 之后添加 只变化一次的 v-if-->
+    <!--或者是这个dom先隐藏，之后在显示 如果频繁切换显示隐藏建议使用 v-show-->
+    <div v-if="todos.length<5">少于五个</div>
+    <div v-else-if="todos.length<=8 && todos.length>=5">少于8个</div>
+    <div v-else>超过8个</div>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            todo: '',
+            todos: []
+        },
+        methods: {
+            add(){
+                this.todos.unshift(this.todo);
+                this.todo = '';
+            }
+        }
+    })
+</script>
+</body>
+</html>
