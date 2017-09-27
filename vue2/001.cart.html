@@ -13,7 +13,7 @@
                 <table class="table table-bordered">
                    <caption class="h2 text-danger text-center">购物列表</caption>
                     <tr>
-                        <th class="text-center">全选 <input type="checkbox"></th>
+                        <th class="text-center">全选 <input type="checkbox" v-model="selectAll" @click="all"></th>
                         <th class="text-center">商品</th>
                         <th class="text-center">单价</th>
                         <th class="text-center">数量</th>
@@ -21,12 +21,12 @@
                         <th class="text-center">操作</th>
                     </tr>
                     <tr v-for="(product,index) in products">
-                        <td><input type="checkbox" v-model="product.checked"></td>
+                        <td><input type="checkbox" v-model="product.checked" @click="checkOne"></td>
                         <td>{{product.productName}}</td>
                         <td>{{product.productPrice}}</td>
                         <td><input type="text" v-model="product.productCount"></td>
-                        <td>{{product.productPrice*product.productCount | toFixed(1)}}</td>
-                        <td><button>删除</button></td>
+                        <td>{{product.productPrice*product.productCount | toFixed(1,'￥')}}</td>
+                        <td><button @click="remove(product)">删除</button></td>
                     </tr>
                 </table>
                 <form>
@@ -56,23 +56,33 @@
         filters:{ //改变展示的结果，而且可以实现共用
             toFixed(input,param1,param2){ //默认就是|后面的名字,
                 //input 代表的是|前面的结果 返回值则是最终展现的结果
-                return parseFloat(input).toFixed(param1)
+                return param2+parseFloat(input).toFixed(param1);
             }
         },
         created(){ //指的是vm创建完成后，数据和方法已经被声明好了，获取数据，这个方法我们叫他 钩子方法 好处 这里的this指向vm实例
             this.$http.get('./products.json').then( (res)=> { //success
                 //vue-resource将this改成了vm实例
                 this.products = res.body;
-                console.log(res);
+                this.checkOne(); //数据获取成功后 判断一下是否应该全选
             }, (err) => { //error
                 console.log(err);
             });
         },
         data:{
-            products:[]
+            products:[],
+            selectAll:false //应该不是默认为false
         },
         methods:{
-
+            all(){ //全选的逻辑 如果selectAll 为true 其他人都为true 如果为false 都为false
+                this.products.forEach(item=>item.checked = this.selectAll);
+            },
+            //选择某个 有一个为false 则结果就是false
+            remove(p){ // product代表的就是某一项点击的
+                this.products = this.products.filter((item)=>item!==p);
+            },
+            checkOne(){ //找false 一个为false就false了
+                this.selectAll = this.products.every(item=>item.checked);
+            }
         }
     });
 </script>
