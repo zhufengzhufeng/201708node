@@ -16,3 +16,12 @@
 - computed (和data是平级的)
 - watch
 - method
+
+- h5
+- draggable="true"
+- e.dataTransfer.setDragImage()
+- dragstart
+- dragover 阻止dragover 否则不会触发drop
+- drop
+
+## ref 引用

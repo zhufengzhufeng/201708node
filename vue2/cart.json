@@ -1,0 +1,5 @@
+[
+  {"name":"vue实战","price":80,"cover":"http://www.zhufengpeixun.cn/themes/jianmo2/images/vue.png"},
+  {"name":"react","price":100,"cover":"https://img11.360buyimg.com/n1/s200x200_jfs/t3640/142/1695345313/491175/474b0f11/582e6f62N531a0ddd.jpg"},
+  {"name":"node","price":80,"cover":"https://img10.360buyimg.com/n1/s200x200_jfs/t3064/316/9231779272/336570/ce323f93/58d0d62bNd25db840.jpg"}
+]

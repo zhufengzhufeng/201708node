@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <style>
+        .cart{width: 100px;height: 100px;position: fixed;bottom: 100px;right: 0;background: yellowgreen;color: #fff;font-size: 35px;line-height: 100px;text-align: center}
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand">拖拽购物车</a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-3" v-for="(cart,index) in carts">
+                    <div class="panel panel-warning text-center" draggable="true" @dragstart="start($event,index)">
+                        <div class="panel-heading">
+                            {{cart.name}}
+                        </div>
+                        <div class="panel-body">
+                            <img :src="cart.cover" alt="" width="120px" height="140px" ref="img">
+                        </div>
+                        <div class="panel-footer">
+                            价格:{{cart.price}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="cart" @drop="drop" @dragover.prevent>
+        <i class="glyphicon glyphicon-shopping-cart"></i>
+        <span>{{count}}</span>
+    </div>
+</div>
+
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="node_modules/vue-resource/dist/vue-resource.js"></script>
+<script>
+    let vm = new Vue({
+        el:'#app',
+        created(){
+            this.$http.get('./cart.json').then((res)=>{
+                this.carts = res.body
+            },(err)=>{
+                console.log(err);
+            });
+        },
+        computed:{
+            count(){
+                return this.buy.length; //通过推拽过的数据 计算出总个数
+            }
+        },
+        methods:{
+            drop(){
+                this.buy.push(this.curDrag); //松手的时候将当前项 放到数组中
+            },
+            start(e,index){ //ref = "img" 表示给dom起名字 可以通过this.$refs取到真实的dom
+                this.curDrag = this.carts[index]; //记录当前的拖拽的那一项
+                e.dataTransfer.setDragImage(this.$refs.img[index],0,0);
+            }
+        },
+        data:{
+            curDrag:{},
+            carts:[],
+            buy:[]
+        }
+    });
+    //1. 点击购物车可以展现列表
+    //2. 相同的数据 需要累加数量
+    //3. 购物车中的数量是根据所有的数据的count进行累加的
+    //4. 实现全选反选 可以控制总价
+    //5. 实现删除等功能
+</script>
+</body>
+</html>
