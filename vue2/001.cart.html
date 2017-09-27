@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+<div id="app">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-bordered">
+                   <caption class="h2 text-danger text-center">购物列表</caption>
+                    <tr>
+                        <th class="text-center">全选 <input type="checkbox"></th>
+                        <th class="text-center">商品</th>
+                        <th class="text-center">单价</th>
+                        <th class="text-center">数量</th>
+                        <th class="text-center">小计</th>
+                        <th class="text-center">操作</th>
+                    </tr>
+                </table>
+                <form>
+                    <div class="form-group">
+                        <label for="productName" class="control-label">商品名称</label>
+                        <input type="text" id="productName" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="productPrice" class="control-label">商品价格</label>
+                        <input type="text" id="productPrice" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-danger" type="button">添加</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="node_modules/vue-resource/dist/vue-resource.js"></script>
+<!--vue-resource 他会将一个$http属性挂载载vm上-->
+<script>
+    //$http 是定义在vue的原型上的 实例上可以直接使用
+    let vm = new Vue({
+        el:'#app',
+        created(){ //指的是vm创建完成后，数据和方法已经被声明好了，获取数据，这个方法我们叫他 钩子方法 好处 这里的this指向vm实例
+            this.$http.get('./products.json').then( (res)=> { //success
+                //vue-resouce将this改成了vm实例
+                this.products = res.body;
+            }, (err) => { //error
+                console.log(err);
+            });
+        },
+        data:{
+            products:[]
+        },
+        methods:{
+
+        }
+    });
+</script>
+</body>
+</html>
