@@ -58,7 +58,7 @@
     let vm = new Vue({
         el:'#app',
         filters:{ //改变展示的结果，而且可以实现共用
-            toFixed(input,param1,param2){ //默认就是|后面的名字,
+            toFixed(input,param1,param2){ //必须就是|后面的名字,
                 //input 代表的是|前面的结果 返回值则是最终展现的结果
                 return param2+parseFloat(input).toFixed(param1);
             }

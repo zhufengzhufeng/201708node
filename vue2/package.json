@@ -8,6 +8,9 @@
   },
   "author": "",
   "license": "ISC",
+  "devDependencies": {
+    "webpack": "^3.6.0"
+  },
   "dependencies": {
     "bootstrap": "^3.3.7",
     "vue": "^2.4.4",

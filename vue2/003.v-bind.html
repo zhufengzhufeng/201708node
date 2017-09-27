@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        .back{background: blue}
+        .fontSize{font-size: 36px;}
+    </style>
 </head>
 <body>
 <div id="app">
@@ -15,12 +19,17 @@
     <!--一个用对象 n个用数组，但是也默认支持原生的写法-->
     <!--style支持对象的写法和数组的写法-->
     <div :style="sty">红</div>
+    <!--通过boolean类型 使其判断样式是否生效-->
+    <div :class="{back:true,fontSize:true}">样式</div>
+    <!--数值中写的类名都会生效-->
+    <div :class="['back',{fontSize:true}]">样式</div>
 </div>
 <script src="node_modules/vue/dist/vue.js"></script>
 <script>
     let vm = new Vue({
         el:'#app',
         data:{
+            f:'fontSize',
             sty:'background:red;color:blue',
             c:{background:'red'},
             b:{color:'green'},
@@ -28,6 +37,8 @@
             title:'我很帅'
         }
     })
+
+
 </script>
 </body>
 </html>
