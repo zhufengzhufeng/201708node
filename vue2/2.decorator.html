@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--vue的修饰符 都在事件后面以.开头，而且可以使用多个
+    事件.stop.prevent
+-->
+<div id="app">
+    <!--捕获 先捕获 在冒泡-->
+    <div @click.capture="grandPa">
+        grandPa
+        <!--self只有点击自己时触发-->
+        <div @click.self="parent">
+            parent
+            <!--只触发一次-->
+            <div @click.once="son">
+                son
+            </div>
+        </div>
+    </div>
+    <a href="http://www.zhufengpeixun.cn" @click.prevent="grandPa">去珠峰</a>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el:'#app',
+        data:{
+        },
+        methods:{
+            grandPa(){
+                alert('grandPa')
+            },
+            parent(){
+                alert('parent')
+            },
+            son(){
+                alert('son')
+            }
+        }
+    })
+</script>
+</body>
+</html>
