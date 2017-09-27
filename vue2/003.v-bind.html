@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--:表示动态绑定 对应的值 直接就是变量 如果要写字符串需要加''
+         注意: :height="1" 1就变成了数字类型
+              :height="true" 就是boolean类型
+    -->
+    <p :title="title">哈哈</p>
+    <img :src="src" alt="" :width="'100px'" :height="'100px'">
+    <!--一个用对象 n个用数组，但是也默认支持原生的写法-->
+    <!--style支持对象的写法和数组的写法-->
+    <div :style="sty">红</div>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el:'#app',
+        data:{
+            sty:'background:red;color:blue',
+            c:{background:'red'},
+            b:{color:'green'},
+            src:'https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=570319711,1306939862&fm=173&s=D32BB044185218517E2BE511030050CB&w=218&h=146&img.JPG',
+            title:'我很帅'
+        }
+    })
+</script>
+</body>
+</html>
