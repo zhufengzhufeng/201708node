@@ -14,3 +14,5 @@
     - :class
     - :style
 - computed (和data是平级的)
+- watch
+- method

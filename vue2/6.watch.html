@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <button @click="change1">不开心</button>
+    <button @click="change2">开心</button>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el:'#app',
+        data:{
+            heart:'美丽'
+        },
+        // methods computed 和 watch的区别 监控一个数据的变化（很纯粹就是执行一件事）可以实现异步方法
+        watch:{
+            /*heart(){ //和要监控的数据必须相同名字
+                setTimeout(function () {
+                    alert('你变了');
+                },500)
+            }*/
+            heart:{
+                handler(){ //默认会调用handler方法
+                    setTimeout(function () {
+                        alert('你变了');
+                    },500);
+                }
+            }
+        },
+        methods:{
+            change1(){this.heart = '不开心';},
+            change2(){this.heart = '开心';},
+        }
+    })
+</script>
+</body>
+</html>

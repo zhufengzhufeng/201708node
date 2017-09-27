@@ -17,7 +17,7 @@
         data:{
             username:''
         },
-        computed:{
+        computed:{//  不支持异步
             validate(){
                 if(this.username.length<6){
                     return '小于6位'
@@ -25,7 +25,7 @@
                 if(this.username.length>8){
                     return '大于8位'
                 }
-                return '通过'
+                return '通过';
             }
         }
     })
