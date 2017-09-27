@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+<div id="app">
+    <table class="table table-bordered">
+        <tr>
+            <th><input type="checkbox" v-model="all">全选</th>
+            <th>价格</th>
+            <th>数量</th>
+        </tr>
+        <tr v-for="p in products">
+            <td><input type="checkbox" v-model="p.isSelected"></td>
+            <td><input type="text" v-model="p.productPrice"></td>
+            <td><input type="text" v-model="p.productCount"></td>
+        </tr>
+        <tr>
+            <td colspan="3">总价 {{sum}}</td>
+        </tr>
+    </table>
+    <input type="text" v-model="name">
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el:'#app',
+        data:{
+            name:'world',
+            products:[
+                {isSelected:true,productPrice:100,productCount:2},
+                {isSelected:true,productPrice:300,productCount:3},
+                {isSelected:true,productPrice:500,productCount:4}
+            ]
+        },
+        computed:{ //计算“属性” 但是写的时候是方法
+            all:{
+              get(){ //全选是根据每个人的状态获取而来的
+                    return this.products.every(item=>item.isSelected)
+              },
+              set(val){ //当设置全选或者反选 会影响其他的值
+                    this.products.forEach(item=>item.isSelected = val);
+              }
+            },
+            sum:{ //默认只根据价格和数量有关，其他变化不会导致属性重新计算
+                //默认调用的是get方法
+               get(){
+                   return this.products.reduceRight((prev,next)=>{
+                       return prev+next.productPrice*next.productCount
+                   },0);
+               },
+               set(val){ //当给sum赋值时会调用此方法
+                    console.log(val)
+               }
+            }
+            /*sum(){
+                return this.products.reduceRight((prev,next)=>{
+                    return prev+next.productPrice*next.productCount
+                },0);
+            }*/
+        }
+    })
+</script>
+</body>
+</html>

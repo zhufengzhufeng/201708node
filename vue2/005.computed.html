@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--校验输入框中的内容 不能小于6位 不能大于8位-->
+    <input type="text" v-model="username">
+    <div>{{validate}}</div>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el:'#app',
+        data:{
+            username:''
+        },
+        computed:{
+            validate(){
+                if(this.username.length<6){
+                    return '小于6位'
+                }
+                if(this.username.length>8){
+                    return '大于8位'
+                }
+                return '通过'
+            }
+        }
+    })
+</script>
+</body>
+</html>

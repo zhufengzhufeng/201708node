@@ -9,3 +9,8 @@
     - .capture 捕获行为 addEventListener('click',fn,true)
     - .self 这个事件只在自己身上触发 e.target || e.srcElement
     - .once 绑定触发一次
+
+- v-bind
+    - :class
+    - :style
+- computed (和data是平级的)
