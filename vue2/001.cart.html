@@ -28,18 +28,22 @@
                         <td>{{product.productPrice*product.productCount | toFixed(1,'￥')}}</td>
                         <td><button @click="remove(product)">删除</button></td>
                     </tr>
+                    <tr>
+                        <!--sum() 这种方式 一般不会使用 因为性能低 只要页面上有任何一个数据变化sum都会重新执行 如果有人用了 那肯定是错误的-->
+                        <td colspan="6">{{sum() | toFixed(2,'￥')}}</td>
+                    </tr>
                 </table>
                 <form>
                     <div class="form-group">
                         <label for="productName" class="control-label">商品名称</label>
-                        <input type="text" id="productName" class="form-control">
+                        <input type="text" id="productName" class="form-control" v-model="product.productName">
                     </div>
                     <div class="form-group">
                         <label for="productPrice" class="control-label">商品价格</label>
-                        <input type="text" id="productPrice" class="form-control">
+                        <input type="text" id="productPrice" class="form-control" v-model="product.productPrice">
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-danger" type="button">添加</button>
+                        <button class="btn btn-danger" type="button" @click="add">添加</button>
                     </div>
                 </form>
             </div>
@@ -59,20 +63,28 @@
                 return param2+parseFloat(input).toFixed(param1);
             }
         },
-        created(){ //指的是vm创建完成后，数据和方法已经被声明好了，获取数据，这个方法我们叫他 钩子方法 好处 这里的this指向vm实例
-            this.$http.get('./products.json').then( (res)=> { //success
-                //vue-resource将this改成了vm实例
-                this.products = res.body;
-                this.checkOne(); //数据获取成功后 判断一下是否应该全选
-            }, (err) => { //error
-                console.log(err);
-            });
+        created(){ // created方法中一般不要放太多的代码
+            this.initData();
         },
         data:{
             products:[],
-            selectAll:false //应该不是默认为false
+            selectAll:false,//应该不是默认为false
+            product:{
+                productName:'',//默认的商品名
+                productPrice:'',//默认的价格
+            }
         },
         methods:{
+            initData(){
+                //指的是vm创建完成后，数据和方法已经被声明好了，获取数据，这个方法我们叫他 钩子方法 好处 这里的this指向vm实例
+                this.$http.get('./products.json').then( (res)=> { //success
+                    //vue-resource将this改成了vm实例
+                    this.products = res.body;
+                    this.checkOne(); //数据获取成功后 判断一下是否应该全选
+                }, (err) => { //error
+                    console.log(err);
+                });
+            },
             all(){ //全选的逻辑 如果selectAll 为true 其他人都为true 如果为false 都为false
                 this.products.forEach(item=>item.checked = this.selectAll);
             },
@@ -82,6 +94,20 @@
             },
             checkOne(){ //找false 一个为false就false了
                 this.selectAll = this.products.every(item=>item.checked);
+            },
+            add(){ // 添加商品
+                let defaultObj = {productCount:1,checked:false};
+                //es6 方法
+                //let obj  = {};
+                //Object.assign(obj,defaultObj,this.product);
+                //es7 chrome60+ 才支持
+                this.products.push({...this.product,...defaultObj});
+                this.checkOne();
+                this.product = {productName:'',productPrice:'',}
+                //将输入框的内容变回 默认值
+            },
+            sum(){
+                return this.products.reduce((prev,next)=>prev+next.productCount*next.productPrice,0);
             }
         }
     });
