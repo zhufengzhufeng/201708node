@@ -20,6 +20,14 @@
                         <th class="text-center">小计</th>
                         <th class="text-center">操作</th>
                     </tr>
+                    <tr v-for="(product,index) in products">
+                        <td><input type="checkbox" v-model="product.checked"></td>
+                        <td>{{product.productName}}</td>
+                        <td>{{product.productPrice}}</td>
+                        <td><input type="text" v-model="product.productCount"></td>
+                        <td>{{product.productPrice*product.productCount | toFixed(1)}}</td>
+                        <td><button>删除</button></td>
+                    </tr>
                 </table>
                 <form>
                     <div class="form-group">
@@ -45,10 +53,17 @@
     //$http 是定义在vue的原型上的 实例上可以直接使用
     let vm = new Vue({
         el:'#app',
+        filters:{ //改变展示的结果，而且可以实现共用
+            toFixed(input,param1,param2){ //默认就是|后面的名字,
+                //input 代表的是|前面的结果 返回值则是最终展现的结果
+                return parseFloat(input).toFixed(param1)
+            }
+        },
         created(){ //指的是vm创建完成后，数据和方法已经被声明好了，获取数据，这个方法我们叫他 钩子方法 好处 这里的this指向vm实例
             this.$http.get('./products.json').then( (res)=> { //success
-                //vue-resouce将this改成了vm实例
+                //vue-resource将this改成了vm实例
                 this.products = res.body;
+                console.log(res);
             }, (err) => { //error
                 console.log(err);
             });
