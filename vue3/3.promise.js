@@ -10,3 +10,5 @@ function buyPack() { //正面就买 反面就不买
     })
 }
 buyPack().then((data)=>{console.log(data)},(err)=>{console.log(err)});
+
+

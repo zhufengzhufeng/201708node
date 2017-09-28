@@ -22,15 +22,15 @@
                 <div class="col-md-6 col-md-offset-3">
                     <div class="panel panel-info">
                         <div class="panel-heading">
-                            <p class="text-warning">亲！你还有x件事需要完成</p>
-                            <input type="text" class="form-control">
+                            <p class="text-warning">亲！你还有{{count}}件事需要完成</p>
+                            <input type="text" class="form-control" v-model="todo.title" @keyup.13="add">
                         </div>
                         <div class="panel-body">
                             <ul class="list-group">
-                                <li class="list-group-item">
-                                    <input type="checkbox">
-                                    <span>回家吃饭</span>
-                                    <button class="btn btn-danger btn-xs pull-right">&times;</button>
+                                <li class="list-group-item" v-for="todo in todos">
+                                    <input type="checkbox" v-model="todo.select">
+                                    <span>{{todo.title}}</span>
+                                    <button @click="remove(todo)" class="btn btn-danger btn-xs pull-right">&times;</button>
                                 </li>
                             </ul>
                         </div>
