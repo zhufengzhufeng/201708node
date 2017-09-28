@@ -26,7 +26,7 @@
                             {{cart.name}}
                         </div>
                         <div class="panel-body">
-                            <img :src="cart.cover" alt="" width="120px" height="140px" ref="img">
+                            <img :src="cart.cover" alt="" width="120px" height="140px" ref="o">
                         </div>
                         <div class="panel-footer">
                             价格:{{cart.price}}
@@ -47,7 +47,7 @@
 <script>
     let vm = new Vue({
         el:'#app',
-        created(){
+        created(){ // 实例加载后执行，等data 和methods加载成功执行
             this.$http.get('./cart.json').then((res)=>{
                 this.carts = res.body
             },(err)=>{
@@ -65,7 +65,9 @@
             },
             start(e,index){ //ref = "img" 表示给dom起名字 可以通过this.$refs取到真实的dom
                 this.curDrag = this.carts[index]; //记录当前的拖拽的那一项
-                e.dataTransfer.setDragImage(this.$refs.img[index],0,0);
+                // 设置拖拽时的图片
+                // this.$refs.属性名 ref = "属性名"
+                e.dataTransfer.setDragImage(this.$refs.o[index],0,0);
             }
         },
         data:{
