@@ -1,51 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>todo</title>
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+  <meta charset="UTF-8">
+  <title>todo</title>
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+  <style>
+    .del {
+      text-decoration: line-through;
+      color: #999
+    }
+  </style>
 </head>
 <body>
 <div id="app">
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">
-                    ToDoList
-                </a>
-            </div>
-        </div>
-    </nav>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="col-md-6 col-md-offset-3">
-                    <div class="panel panel-info">
-                        <div class="panel-heading">
-                            <p class="text-warning">亲！你还有{{count}}件事需要完成</p>
-                            <input type="text" class="form-control" v-model="todo.title" @keyup.13="add">
-                        </div>
-                        <div class="panel-body">
-                            <ul class="list-group">
-                                <li class="list-group-item" v-for="todo in todos">
-                                    <input type="checkbox" v-model="todo.select">
-                                    <span>{{todo.title}}</span>
-                                    <button @click="remove(todo)" class="btn btn-danger btn-xs pull-right">&times;</button>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="panel-footer">
-                            <ul class="nav nav-pills">
-                                <li class="active"><a href="">全部</a></li>
-                                <li><a href="">未完成</a></li>
-                                <li><a href="">已完成</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">
+          ToDoList
+        </a>
+      </div>
     </div>
+  </nav>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <p class="text-warning">亲！你还有{{count}}件事需要完成</p>
+              <input type="text" class="form-control" v-model="todo.title" @keyup.13="add">
+            </div>
+            <div class="panel-body">
+              <ul class="list-group">
+                <li class="list-group-item" v-for="todo in todos">
+                  <!--点击谁 就把当前这个记住, 用当前这个和每一项比，如果相等则表示点击的是当前的这一项，让输入框显示出来即可-->
+                  <div @dblclick="saveCurrent(todo)" v-show="cur!=todo">
+                    <input type="checkbox" v-model="todo.select">
+                    <span :class="{del:todo.select}">{{todo.title}}</span>
+                    <button @click="remove(todo)" class="btn btn-danger btn-xs pull-right">&times;</button>
+                  </div>
+                  <input type="text" v-model="todo.title" v-show="cur==todo">
+                </li>
+              </ul>
+            </div>
+            <div class="panel-footer">
+              <ul class="nav nav-pills">
+                <li class="active"><a href="">全部</a></li>
+                <li><a href="">未完成</a></li>
+                <li><a href="">已完成</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <script src="node_modules/vue/dist/vue.js"></script>
 <!--vue-resource基于promise axios他也是基于promise

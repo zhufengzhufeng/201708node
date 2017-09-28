@@ -6,9 +6,13 @@ let vm = new Vue({
     },
     data:{
         todos:[],
-        todo:{ select:false, title:'' }
+        todo:{ select:false, title:'' },
+        cur:{}
     },
     methods:{
+        saveCurrent(todo){
+            this.cur = todo;
+        },
         add(){
           this.todos.push(this.todo);
           this.todo = { select:false, title:'' };
@@ -29,7 +33,8 @@ let vm = new Vue({
     computed:{
         count(){ //count是根据数组中没有有选中的个数而来的、
            return this.todos.filter(item=>!item.select).length;
-        }
+        },
+
     },
     watch:{},
 });
