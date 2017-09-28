@@ -29,11 +29,11 @@
           <div class="panel panel-info">
             <div class="panel-heading">
               <p class="text-warning">亲！你还有{{count}}件事需要完成</p>
-              <input type="text" class="form-control" v-model="todo.title" @keyup.13="add">
+              <input type="text" class="form-control" v-model="todo.title" @keyup.13="add" placeholder="请输入代办事项">
             </div>
             <div class="panel-body">
               <ul class="list-group">
-                <li class="list-group-item" v-for="todo in todos">
+                <li class="list-group-item" v-for="todo in newTodos">
                   <!--点击谁 就把当前这个记住, 用当前这个和每一项比，如果相等则表示点击的是当前的这一项，让输入框显示出来即可-->
                   <div @dblclick="saveCurrent(todo)" v-show="cur!=todo">
                     <input type="checkbox" v-model="todo.select">
@@ -42,17 +42,20 @@
                   </div>
                   <input type="text"
                          v-model="newObj.title"
+                         v-auto-focus="cur==todo"
+                         @blur="cancel"
                          v-show="cur==todo"
                          @keyup.esc="cancel"
+                         @keyup.enter="saveUpdate(todo)"
                   >
                 </li>
               </ul>
             </div>
             <div class="panel-footer">
               <ul class="nav nav-pills">
-                <li class="active"><a href="">全部</a></li>
-                <li><a href="">未完成</a></li>
-                <li><a href="">已完成</a></li>
+                <li :class="{active:hash=='all'}"><a href="#all">全部</a></li>
+                <li :class="{active:hash=='unfinish'}"><a href="#unfinish">未完成</a></li>
+                <li :class="{active:hash=='finish'}"><a href="#finish">已完成</a></li>
               </ul>
             </div>
           </div>
