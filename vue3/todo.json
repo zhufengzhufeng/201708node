@@ -1,0 +1,5 @@
+[
+  {"select":false,"title":"回家吃饭"},
+  {"select":true,"title":"回家睡觉"},
+  {"select":true,"title":"回家玩游戏"}
+]

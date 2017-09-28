@@ -6,45 +6,53 @@
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
 </head>
 <body>
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">
-               ToDoList
-            </a>
+<div id="app">
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    ToDoList
+                </a>
+            </div>
         </div>
-    </div>
-</nav>
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="col-md-6 col-md-offset-3">
-                <div class="panel panel-info">
-                    <div class="panel-heading">
-                        <p class="text-warning">亲！你还有x件事需要完成</p>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="panel-body">
-                        <ul class="list-group">
-                            <li class="list-group-item">
-                                <input type="checkbox">
-                                <span>回家吃饭</span>
-                                <button class="btn btn-danger btn-xs pull-right">&times;</button>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="panel-footer">
-                        <ul class="nav nav-pills">
-                            <li class="active"><a href="">全部</a></li>
-                            <li><a href="">未完成</a></li>
-                            <li><a href="">已完成</a></li>
-                        </ul>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <p class="text-warning">亲！你还有x件事需要完成</p>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="panel-body">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <input type="checkbox">
+                                    <span>回家吃饭</span>
+                                    <button class="btn btn-danger btn-xs pull-right">&times;</button>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="panel-footer">
+                            <ul class="nav nav-pills">
+                                <li class="active"><a href="">全部</a></li>
+                                <li><a href="">未完成</a></li>
+                                <li><a href="">已完成</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
+<script src="node_modules/vue/dist/vue.js"></script>
+<!--vue-resource基于promise axios他也是基于promise
+    vue-resource 支持jsonp axios 不知持jsonp
+    axios 可以在服务端使用，axios并没有挂在vue的实例上
+-->
+<script src="node_modules/axios/dist/axios.js"></script>
+<script src="todo.js"></script>
 </body>
 </html>
