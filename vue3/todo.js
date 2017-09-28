@@ -4,7 +4,7 @@ let vm = new Vue({
     created(){ //初始化数据 进行ajax调用
         //如果localstorage中有数据 就取出来用 如果没有从json中获取
         let result = JSON.parse(localStorage.getItem('list'));
-        if(result==null){
+        if(result == null){
             this.getData();
         }else{
             this.todos = result;

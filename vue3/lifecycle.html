@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <p></p>
+  <div>{{a}}</div>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+  let vm = new Vue({
+      //el:'#app', // vue中自带的方法
+      data:{a:1,b:2},
+      methods:{},
+      template:'<div id="a">{{a}}</div>', //如果内部有模板就不会使用外部模板
+      // beforeCreate(){console.log(this.a)}, //一般用不到，这里不能拿到数据和方法
+      created(){ console.log(this.a)}, // 获取数据 方法和数据已经挂载在了实例上
+      // beforeMount(){alert(1)},//此函数挂载之前执行，没有应用场景
+      mounted(){ },//可以操作真实的dom
+      // beforeUpdate(){alert(1)}, // dom更新前会触发这个事件 可以做一个全局数据的监控，我们一般用watch
+      // updated(){ },
+      beforeDestroy(){alert('我死了')}, //一般清空定时器 或者移除自定函数（肯定不会手动调用$destroy方法）
+      destroyed(){}
+  }).$mount('#app'); //手动挂载
+  // vm.$destroy(); //移除所有的监听和观察者，孩子组件
+  // 双向绑定内部靠的就是Object.defineProperty
+</script>
+</body>
+</html>
