@@ -7,15 +7,16 @@ let vm = new Vue({
     data:{
         todos:[],
         todo:{ select:false, title:'' },
-        cur:{},
-        newObj:{}
+        cur:{}, //是用来比较的 只是一个值 用来判断是否显示输入框的
+        newObj:{} //用来给输入框赋值的
     },
     methods:{
-        cancel(){
+        cancel(){ //当取消的时候 cur清空 和任何人都比较为false 所以不显示输入框
             this.cur = {};
         },
         saveCurrent(todo){
-            Object.assign(this.newObj,todo);
+            //浅拷贝 和 深拷贝
+            Object.assign(this.newObj,todo); //为了让输入框的内容和span中相同 但是不是同一个。
             this.cur = todo;
             // 将todo克隆一份 给cur，和以前todo长的一样 但是没关系
         },
