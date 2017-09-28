@@ -40,7 +40,11 @@
                     <span :class="{del:todo.select}">{{todo.title}}</span>
                     <button @click="remove(todo)" class="btn btn-danger btn-xs pull-right">&times;</button>
                   </div>
-                  <input type="text" v-model="todo.title" v-show="cur==todo">
+                  <input type="text"
+                         v-model="newObj.title"
+                         v-show="cur==todo"
+                         @keyup.esc="cancel"
+                  >
                 </li>
               </ul>
             </div>

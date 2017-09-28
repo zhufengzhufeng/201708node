@@ -7,11 +7,17 @@ let vm = new Vue({
     data:{
         todos:[],
         todo:{ select:false, title:'' },
-        cur:{}
+        cur:{},
+        newObj:{}
     },
     methods:{
+        cancel(){
+            this.cur = {};
+        },
         saveCurrent(todo){
+            Object.assign(this.newObj,todo);
             this.cur = todo;
+            // 将todo克隆一份 给cur，和以前todo长的一样 但是没关系
         },
         add(){
           this.todos.push(this.todo);
