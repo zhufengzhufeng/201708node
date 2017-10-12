@@ -26,15 +26,12 @@ https://github.com/DMQ/mvvm
 
 ## v-once
 ## v-text
+## v-cloak
 ## v-html
 
-
-
 ## v-for
-
-## v-cloak
-
-## 数组问题
+- 要循环谁 就将指令写在谁的身上,可以采用括号的方式(val,key) in result
+- 可以循环 数字 字符串 数组 对象
 
 ## v-if / v-show(template)
 

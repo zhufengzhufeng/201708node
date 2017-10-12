@@ -7,6 +7,10 @@
 <body>
 <div id="app">
   <div v-for="(val,index) in newArr">{{val}}{{index}}</div>
+  <div>
+    <!--s 是对象的值 key 是对象的键 index是对象的索引-->
+    <li v-for="(s,key,index) in school">{{s}}{{key}}{{index}}</li>
+  </div>
 </div>
 <script src="node_modules/vue/dist/vue.js"></script>
 <script>
@@ -27,7 +31,8 @@
       },
       //v-for 循环数组 对象 (字符串 数字)
       data:{
-        arr:[1,2,3,4,5]
+        arr:[1,2,3,4,5],
+        school:{name:'珠峰培训',age:8,address:'回龙观'}
       }
   })
 </script>

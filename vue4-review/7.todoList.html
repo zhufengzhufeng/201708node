@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <input type="text" v-model="val" @keyup.ctrl.handsome="addList">
+  <ul>
+    <li v-for="a in arr">{{a}}</li>
+  </ul>
+  <!--v-show 操作的样式/v-if 操作的是dom元素 v-else-->
+  <!--频繁控制显示和隐藏采用v-show-->
+  handsome
+  <!--使用v-if 或者else 如果切换的元素相同要使用key 否则vue会觉得dom没发生变化所以不会更改-->
+  <!--template 可以在v-if中和else中使用 没有任何意义，只是用来包裹元素的，v-show是不支持template的-->
+  <template v-if="flag">
+    <label>用户名</label>
+    <input type="text" key="1">
+  </template>
+  <template v-else>
+    <label>密码</label>
+    <input type="text" key="2">
+  </template>
+
+
+  <button @click="flag=!flag">切换输入框</button>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+  Vue.config.keyCodes.handsome = 13; //自定义键盘修饰符号
+  let vm = new Vue({
+      el:'#app',
+      data:{
+        val:'',
+        arr:[],
+        flag:true
+      },
+      methods:{
+          addList(e){
+              this.arr.push(this.val);
+              this.val = '';
+          }
+      }
+  });
+</script>
+</body>
+</html>
