@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">{{a}}{{b.c}} {{b.a}} <br> {{arr}}</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+  let vm = new Vue({
+      el:'#app',
+      data:{
+        arr:[1,2,3], //不能通过索引来改变数组，splice pop shift unshift sort reverse push
+        //替换数组的方式 filter map
+        b:{a:1}, //如果c属性原本没有后加上的是不会实现双向数据绑定的
+        a:1 //vue数据劫持 将data中每个数据都用Object.defineProperty定义一下，每个属性都会有set和get方法
+      }
+  });
+  vm.$set(vm.b,'c',100); //增加单个属性
+  //vm.b = Object.assign({},vm.b,{c:200}); //es6
+  vm.b = {...vm.b,...{c:200}} //增加多个属性
+
+</script>
+</body>
+</html>
