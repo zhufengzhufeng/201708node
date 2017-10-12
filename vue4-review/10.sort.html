@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+<div id="app">
+        <table class="table table-bordered table-hover">
+          <tr>
+            <th @click="changeType(0)">英语</th>
+            <th @click="changeType(1)">数学</th>
+            <th @click="changeType(2)">语文</th>
+          </tr>
+          <tr v-for="score in scores">
+            <td>{{score.english}}</td>
+            <td>{{score.math}}</td>
+            <td>{{score.chinese}}</td>
+          </tr>
+        </table>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+  let vm = new Vue({
+      el:'#app',
+      watch:{
+         type(newVal,oldValue){
+             switch (newVal){
+                 case 0:
+                     this.scores.sort(function (a,b) {
+                         return a.english - b.english
+                     }); break;
+                 case 1:
+                    this.scores.sort(function (a,b) {
+                         return a.math - b.math
+                     }); break;
+                 case 2:
+                     this.scores.sort(function (a,b) {
+                         return a.chinese - b.chinese
+                     }); break;
+             }
+         }
+      },
+     /* computed:{
+          computeScores(){
+              switch (this.type){
+                  case 0:
+                      return this.scores.sort(function (a,b) {
+                          return a.english - b.english
+                      }); break;
+                  case 1:
+                      return this.scores.sort(function (a,b) {
+                          return a.math - b.math
+                      }); break;
+                  case 2:
+                      return this.scores.sort(function (a,b) {
+                          return a.chinese - b.chinese
+                      }); break;
+                  default:
+                      return this.scores;
+              }
+          }
+      },*/
+      methods:{
+          changeType(t){
+            this.type = t;
+          }
+      },
+      data:{
+          type:'',
+          scores:[
+              {english:30,math:100,chinese:88},
+              {english:18,math:98,chinese:23},
+              {english:56,math:22,chinese:77},
+              {english:98,math:33,chinese:55}
+          ]
+      }
+  })
+</script>
+</body>
+</html>
