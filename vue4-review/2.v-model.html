@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--实现的是双向数据绑定 语法糖-->
+<div id="app">
+  <!--默认v-model 就是监控了 input事件-->
+  <input type="text" :value="msg" @input="fn($event)">
+  <!--默认给checkbox绑定一个值 此值默认是boolean类型-->
+  <input type="checkbox" v-model="flag">
+  爱好 <br>
+  <!--如果checkbox绑定n个值 此时数据必须是数组类型 并且checkbox 必须有value属性，当选中后会将value属性放到数组中-->
+  <input type="checkbox" v-model="checks" value="游泳"> 游泳
+  <input type="checkbox" v-model="checks" value="睡觉"> 睡觉
+  <input type="checkbox" v-model="checks" value="打球"> 打球
+  {{checks}}
+  <br>
+  <!--使用radio必须加value属性，会自动的将点击后的结果赋予给v-model绑定的数据 如果相等则选中 ，不相等则取消选中-->
+  <input type="radio" v-model="radio" value="男">男
+  <input type="radio" v-model="radio" value="女">女
+  <input type="radio" v-model="radio" value="中性">中性
+  {{radio}}
+
+  <select v-model="select">
+    <!--禁用请选择 防止用户在次点回请选择，默认使用value 没有value使用option中的内容-->
+    <option disabled value="">请选择</option>
+    <option value="1">河北</option>
+    <option value="2">黑龙江</option>
+    <option value="3">河南</option>
+  </select>
+  {{select}}
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+  let vm = new Vue({
+    el:'#app',
+    data:{
+        select:'',
+        checks:[],
+        radio:'女',
+        msg:'hello zfpx',
+        flag:true
+    },
+    methods:{
+        fn(e){ //e必须还要通过$event传递 或者默认不加括号的时候才会传入
+          this.msg = e.target.value;
+        }
+    }
+  });
+</script>
+</body>
+</html>
