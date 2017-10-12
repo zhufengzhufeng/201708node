@@ -12,7 +12,7 @@
   <input type="text" v-model="msg">
   <!--v-once表示绑定一次 ，之后数据渲染不会刷新视图-->
   <!--v-cloak表示 当页面编译完成后会将此属性移除掉-->
-  <div v-once  v-cloak>
+  <div v-once v-cloak>
     <!--解决单个内容的闪烁问题-->
     <div v-text="msg"></div>
     {{msg}}{{msg}}{{msg}}

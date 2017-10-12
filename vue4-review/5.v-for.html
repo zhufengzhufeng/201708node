@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <div v-for="(val,index) in newArr">{{val}}{{index}}</div>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+  let vm = new Vue({
+      el:'#app',
+      computed:{ //计算属性 ，看起来是一个方法 实质是属性，有两部分组成 其中一部分是get 另一部分是set 默认是get
+//          newArr:{
+//              get(){
+//                  return this.arr.map((item)=>item*3)
+//              },
+//              set(val){ //vm.newArr = 100
+//                console.log(val);
+//              }
+//          }
+          newArr(){
+              return this.arr.map((item)=>item*3)
+          }
+      },
+      //v-for 循环数组 对象 (字符串 数字)
+      data:{
+        arr:[1,2,3,4,5]
+      }
+  })
+</script>
+</body>
+</html>

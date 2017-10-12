@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <!--只有嵌套循环时可能出现需要这种方式-->
+  <div v-for="(val,index) in newArr()">{{val}}{{index}}</div>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+  let vm = new Vue({
+      el:'#app',
+      data:{
+        arr:[1,2,3,4,5]
+      },
+      methods:{
+          newArr(){
+              return this.arr.map(item=>item*3)
+          }
+      }
+  })
+</script>
+</body>
+</html>
