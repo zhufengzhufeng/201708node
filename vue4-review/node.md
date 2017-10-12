@@ -25,10 +25,10 @@ https://github.com/DMQ/mvvm
 
 
 ## v-once
-
+## v-text
 ## v-html
 
-## v-text
+
 
 ## v-for
 
