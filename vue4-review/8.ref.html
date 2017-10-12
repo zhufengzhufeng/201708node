@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <div id="dom">{{a}}</div>
+  <p ref="zfpx" v-for="a in 3">hello</p>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<!--ref documentById 想获取真实dom 可以通过给元素起引用的名字 -->
+<script>
+  let vm = new Vue({
+      data:{
+          a:1
+      },
+      el:'#app',
+      mounted(){ //vue提供的一个回调函数 钩子函数，获取真实的dom
+          //ref的名字不能重复，最后会以最后获得的为主，此时获取的都是对象
+          console.log(this.$refs);
+          this.a = 2; //马上设置数据变化 页面渲染是异步的 无法马上拿到结果
+          this.$nextTick(()=>{
+              console.log(document.getElementById('dom').innerHTML);
+          });
+          //ref 和 v-for连用 获取的是数组
+         /* this.$nextTick(()=>{ //在此函数中dom肯定渲染完成了
+              console.log(vm);
+          });//下一队列 会等待dom完成渲染后执行此回调函数*/
+      }
+  })
+</script>
+</body>
+</html>
