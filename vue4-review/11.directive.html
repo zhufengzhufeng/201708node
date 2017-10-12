@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #app div{position: absolute;width: 100px;height: 100px;background: red}
+    </style>
+</head>
+<body>
+<div id="app">
+    <div v-drag></div>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el:'#app',
+        directives:{
+            drag(el){
+                el.onmousedown = function (e) {
+                    var disx = e.pageX - el.offsetLeft;
+                    var disy = e.pageY - el.offsetTop;
+                    document.onmousemove = function (e) {
+                        var x = e.pageX - disx;
+                        var y = e.pageY - disy;
+                        el.style.top = y+'px';
+                        el.style.left = x+'px';
+                    };
+                    document.onmouseup = function () {
+                        document.onmousemove =  document.onmouseup = null;
+                    };
+                    e.preventDefault();
+                }
+            }
+        },
+        data:{
+
+        }
+    })
+</script>
+</body>
+</html>

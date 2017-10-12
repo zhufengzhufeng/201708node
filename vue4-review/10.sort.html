@@ -7,76 +7,102 @@
 </head>
 <body>
 <div id="app">
-        <table class="table table-bordered table-hover">
-          <tr>
-            <th @click="changeType(0)">英语</th>
-            <th @click="changeType(1)">数学</th>
-            <th @click="changeType(2)">语文</th>
-          </tr>
-          <tr v-for="score in scores">
-            <td>{{score.english}}</td>
-            <td>{{score.math}}</td>
-            <td>{{score.chinese}}</td>
-          </tr>
-        </table>
+  搜索<input type="text" v-model="query">
+  <select v-model="selectItem">
+    <option value="" disabled>请选择</option>
+    <option value="0">英语</option>
+    <option value="1">数学</option>
+    <option value="2">语文</option>
+  </select>
+  <table class="table table-bordered table-hover">
+    <tr>
+      <th @click="changeType(0)">英语</th>
+      <th @click="changeType(1)">数学</th>
+      <th @click="changeType(2)">语文</th>
+    </tr>
+    <tr v-for="score in computeScores">
+      <!-- v-html 中不能使用过滤器 过滤器只能在{{}} v-text中使用-->
+      <td v-html="changeColor(score.english,query,0)"></td>
+      <td v-html="changeColor(score.math,query,1)"></td>
+      <td v-html="changeColor(score.chinese,query,2)"></td>
+    </tr>
+  </table>
 </div>
 <script src="node_modules/vue/dist/vue.js"></script>
 <script>
-  let vm = new Vue({
-      el:'#app',
-      watch:{
-         type(newVal,oldValue){
-             switch (newVal){
-                 case 0:
-                     this.scores.sort(function (a,b) {
-                         return a.english - b.english
-                     }); break;
-                 case 1:
-                    this.scores.sort(function (a,b) {
-                         return a.math - b.math
-                     }); break;
-                 case 2:
-                     this.scores.sort(function (a,b) {
-                         return a.chinese - b.chinese
-                     }); break;
-             }
-         }
-      },
-     /* computed:{
-          computeScores(){
-              switch (this.type){
-                  case 0:
-                      return this.scores.sort(function (a,b) {
-                          return a.english - b.english
-                      }); break;
-                  case 1:
-                      return this.scores.sort(function (a,b) {
-                          return a.math - b.math
-                      }); break;
-                  case 2:
-                      return this.scores.sort(function (a,b) {
-                          return a.chinese - b.chinese
-                      }); break;
-                  default:
-                      return this.scores;
-              }
-          }
-      },*/
-      methods:{
-          changeType(t){
-            this.type = t;
-          }
-      },
-      data:{
-          type:'',
-          scores:[
-              {english:30,math:100,chinese:88},
-              {english:18,math:98,chinese:23},
-              {english:56,math:22,chinese:77},
-              {english:98,math:33,chinese:55}
-          ]
-      }
-  })
+    let vm = new Vue({
+        el: '#app',
+        filters:{ // filter中的this 是window input是管道符前面的结果，query就是对应的参数}
+        },
+        /* watch:{ //数据变化了才执行
+       type(newVal,oldValue){
+       switch (newVal){
+       case 0:
+       this.scores.sort( (a,b) => {
+       return (a.english - b.english)*this.sort;
+       }); break;
+       case 1:
+       this.scores.sort( (a,b) => {
+       return (a.math - b.math)*this.sort;
+       }); break;
+       case 2:
+       this.scores.sort( (a,b) => {
+       return (a.chinese - b.chinese)*this.sort;
+       }); break;
+       }
+       }
+       },*/
+        computed: {
+            computeScores(){ //watch需要监控sort 和type  但是计算属性会自动根据需要的属性计算，相比之下比watch简单了些
+                switch (this.type) {
+                    case 0:
+                        return this.scores.sort((a, b) => {
+                            return (a.english - b.english) * this.sort
+                        });
+                        break;
+                    case 1:
+                        return this.scores.sort((a, b) => {
+                            return (a.math - b.math) * this.sort
+                        });
+                        break;
+                    case 2:
+                        return this.scores.sort((a, b) => {
+                            return (a.chinese - b.chinese) * this.sort
+                        });
+                        break;
+                    default:
+                        return this.scores;
+                }
+            }
+        },
+        methods: {
+            changeColor(input,query,column){ // 22  '2'
+                let reg = new RegExp(query,'g'); // /2/
+                if(query&&column==this.selectItem || this.selectItem == ''){ //如果输入框中有值 在进行替换
+                    return input.toString().replace(reg,function () {
+                        return `<span style="color:red">${arguments[0]}</span>`
+                    });
+                }
+                return input;
+            },
+            changeType(t){
+                this.type = t;
+                this.sort *= -1;
+            }
+        },
+        data: {
+            selectItem:'',
+            query:'',
+            type: '',
+            sort: 1,
+            scores: [
+                {english: 30, math: 100, chinese: 88},
+                {english: 18, math: 98, chinese: 23},
+                {english: 56, math: 22, chinese: 77},
+                {english: 98, math: 33, chinese: 55}
+            ]
+        }
+    })
 </script>
 </body>
 </html>
