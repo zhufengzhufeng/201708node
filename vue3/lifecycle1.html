@@ -6,6 +6,8 @@
 </head>
 <body>
 <div id="app">
+  <span ref="o"></span>
+  <span ref="o"></span>
   <p></p>
   <div v-for="a in arr" ref="oDiv">{{a}}</div>
 </div>
@@ -16,7 +18,8 @@
       methods:{},
       created(){},
       mounted(){
-        this.arr = [1,2,3];
+          console.log(this.$refs.o);
+          this.arr = [1,2,3];
         // 等待dom渲染完成后 在操作dom
         this.$nextTick(()=>{ //等待渲染完成后获取真实dom DOM渲染是异步渲染
             console.log(this.$refs.oDiv);
@@ -24,6 +27,8 @@
       }, //在mounted中获取也可以
   }).$mount('#app'); //手动挂载
 
+
 </script>
+
 </body>
 </html>

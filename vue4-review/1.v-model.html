@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--实现的是双向数据绑定 语法糖-->
+<div id="app">
+  <div :title="msg">哈哈</div>
+  <input type="text" v-model="msg">
+  {{msg}}
+  <!--<button v-on:mousedown="say">点我啊</button>-->
+  <button @mousedown="say">点我啊</button>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+  // 创造vue的实例时应该传入一些配置参数
+  // MVVM model数据 view视图 viewModel 视图模型
+  let vm = new Vue({
+    el:'#app', // 不能用body 和 html 必须时一个普通的节点，querySelector
+    data:{ //data表示的就是数据，vm代理(拷贝了data对象)data这个对象赋予给了vm，
+        msg:'hello zfpx',
+        boolean:true,
+        number:1,
+        arr:[],
+        obj:{}
+    },
+    methods:{ //方法中的this指向我们的vm实例，这里会和data合并后一起挂载在实例上所以名子不能和data相同
+        say() {
+            alert(this.msg)
+        }
+    }
+  });
+</script>
+</body>
+</html>
