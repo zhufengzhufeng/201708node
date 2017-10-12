@@ -35,7 +35,9 @@ https://github.com/DMQ/mvvm
 
 ## v-if / v-show(template)
 
-## v-bind
+## vm.$nextTick
+- 默认在mounted中就放置一个$nextTick
+
 
 ## 修饰符 自定义键盘修饰符
 

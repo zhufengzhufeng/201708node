@@ -13,9 +13,10 @@
 <!--ref documentById 想获取真实dom 可以通过给元素起引用的名字 -->
 <script>
   let vm = new Vue({
-      data:{
-          a:1
+      watch:{ //watch和computed computed不能实现异步 watch可以实现异步操作，有的时候 watch和computed可以相互转化
+          a(newVal,oldVal){console.log(newVal,oldVal)}
       },
+      data:{a:1},
       el:'#app',
       mounted(){ //vue提供的一个回调函数 钩子函数，获取真实的dom
           //ref的名字不能重复，最后会以最后获得的为主，此时获取的都是对象
@@ -30,6 +31,7 @@
           });//下一队列 会等待dom完成渲染后执行此回调函数*/
       }
   })
+  // vm.$refs vm.$nextTick vm.$el vm.$data vm.$watch
 </script>
 </body>
 </html>

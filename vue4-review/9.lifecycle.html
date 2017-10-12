@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+  {{a}}sadfgh
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+  //生命周期的钩子函数
+    // beforeCreate 准备方法，生命周期,此时数据没有挂载 方法不用管
+    // created ajax获取数据，ajax是异步的，不会等待返回结果
+    // beforeMount 不用
+    // mounted 可以获取真实的dom元素
+    // beforeUpdate 页面放生更改才会触发此函数
+    // updated    watch
+    // beforeDestroy 一般不会手动销毁，组件切换时会触发销毁，可以清除定时器，解绑函数等操作
+    // destroyed
+    let vm = new Vue({
+        data:{a:1},
+        beforeCreate(){
+            console.log(this.a)
+        },
+        created(){
+            console.log(this.a)
+        }, //template 需要只能有一个根节点
+        //template:'<div>hello</div>',
+        beforeMount(){ //挂载 = 渲染页面
+          alert('创建前')
+        },
+        //一般情况我们会在mounted中添加$nextTick
+        mounted(){alert('挂载成功 可以获取dom')},
+    });
+    vm.$mount('#app');
+</script>
+</body>
+</html>
