@@ -40,6 +40,45 @@ npm install babel-core babel-loader --save-dev
 npm install babel-preset-es2015 --save-dev
 ```
 
+## 解析es7 所有语法识别(预设)
+- stage-0 包括阶段1,2,3
+```
+npm install babel-preset-stage-0 --save-dev
+```
+
+## 解析css模块插入到style标签内
+```
+npm install style-loader css-loader --save-dev
+```
+
+## 解析less(less) 需要less-loader
+- 如果想编译less 需要安装less模块
+- 如果想在webpack中以模块的形式加载less 需要less-loader
+```
+npm install less less-loader --save-dev
+```
+
+## 解析图片(jpg|gif|wott|svg|wott2)
+```
+npm install file-loader url-loader --save-dev
+```
+
+> 在js中使用图片需要import导入否则webpack不会打包
+
+## 打包html(插件)
+- 正常情况下应该在src下创建html,最终将打包的文件引入，导出到dist目录下
+```
+npm install html-webpack-plugin --save-dev
+```
+
+## webpack-dev-server(插件)
+- 帮我们起一个本地的服务跑我们的项目
+- 支持热更新(代码改动页面刷新)
+```
+npm install webpack-dev-server --save-dev
+```
+
+
 
 ## webpack是基于node的所以语法是commonjs规范
 - css预编译器 less sass stylus
@@ -49,3 +88,12 @@ npm install babel-preset-es2015 --save-dev
 - 更改项目代码浏览器自动刷新
 - webpack可以帮我们提供服务接口
 - 可以支持模块化 转化commonjs 可以转化es6 可以转化amd cmd umd
+
+
+
+webpack babel-core babel-loader babel-preset-es2015
+ babel-preset-stage-0
+ css-loader style-loader
+ less less-loader file-loader url-loader html-webpack-plugin webpack-dev-server --save-dev
+
+ 
