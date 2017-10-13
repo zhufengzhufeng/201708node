@@ -3,3 +3,6 @@ export let str = '我很帅';
 export function b() {
     console.log(1);
 }
+export let a= ()=>{
+    console.log(2)
+};
