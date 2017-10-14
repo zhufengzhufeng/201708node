@@ -96,4 +96,3 @@ webpack babel-core babel-loader babel-preset-es2015
  css-loader style-loader
  less less-loader file-loader url-loader html-webpack-plugin webpack-dev-server --save-dev
 
- 

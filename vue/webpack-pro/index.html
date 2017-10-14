@@ -7,5 +7,15 @@
 <body>
 <!--rem (function(){})-->
 我非常帅
+
+<script>
+  let obj = {}
+  Object.defineProperty(obj,'a',{
+      value:'1',
+      configurable:false
+  });
+
+  delete obj.a
+</script>
 </body>
 </html>
