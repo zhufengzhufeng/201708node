@@ -1,7 +1,9 @@
 // 文件模块 我们自己写的 必须加./来引用
 let r = require('./dialog.js');
 // 通过require拿进来的是一个对象
-new r().create();
+//new r().create();
+
+
 
 // 1.new r.a().create();
 
