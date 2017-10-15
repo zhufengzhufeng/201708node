@@ -1,15 +1,11 @@
 {
-  "name": "handsome",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
+  "name": "handsome1",
+  "version": "1.0.1",
+  "main": "main.js",
   "license": "MIT",
   "dependencies": {
-    "vue": "^2.4.2"
+    "handsome": "^1.0.1",
+    "jquery": "^3.2.1"
   },
   "devDependencies": {
     "less": "^3.0.0-alpha.3"

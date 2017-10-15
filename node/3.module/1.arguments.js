@@ -21,7 +21,7 @@ let r = require('./dialog.js');
     //  如何导入一个模块 require导入一个模块
     //  如何导出一个模块 exports  module.exports
 
-
+// http://javascript.ruanyifeng.com/nodejs/module.html
 
 /*
 (function (exports,require,module,__filename,__dirname) {
