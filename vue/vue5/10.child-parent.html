@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  父 {{msg}}
+  <!--<child :msg="msg" @update:fn="val=>msg=val"></child>-->
+  <child :msg.sync="msg" ></child>
+  <!--语法糖-->
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+  new Vue({
+     el:'#app',
+     data:{msg:'hello'},
+     components:{
+        child:{
+            methods:{
+                fn(){
+                    this.$emit('update:msg','blue')
+                }
+            },
+            template:'<div>{{msg}} <button @click="fn">变蓝</button></div>',
+            props:['msg']
+        }
+     }
+  })
+</script>
+</body>
+</html>
