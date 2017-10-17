@@ -7,7 +7,7 @@
 <body>
 <div id="app">
   父 {{msg}}
-  <!--<child :msg="msg" @update:fn="val=>msg=val"></child>-->
+  <!--<child :msg="msg" @update:msg="val=>msg=val"></child>-->
   <child :msg.sync="msg" ></child>
   <!--语法糖-->
 </div>
