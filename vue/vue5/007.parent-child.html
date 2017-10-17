@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<div id="app">
+  <!--:动态绑定将值转化成了变量-->
+  <child :title="msg"></child>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+  // 属性校验 校验父类传递过来的属性
+  // 父组件如何调用子组件的方法
+  let vm = new Vue({
+      el:'#app',
+      data:{ msg:600},
+      components:{
+          child:{
+              template:'<div>儿子要钱 {{title}}</div> ', //数组方式不能实现 属性的校验
+              props:{ // props:['title']
+                  title:{
+                      type:[Number,Boolean,Array,Object,String],
+                      default:'无',
+                      validator(val){ //val代表传递过来的值，如果返回true 通过返回返回false 不通过
+                        return val>500;
+                      }
+                  },//只有提示作用  校验类型
+
+              },
+          }
+      }
+  })
+</script>
+</body>
+</html>

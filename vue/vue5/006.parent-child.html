@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<div id="app">
+  <!--1.title属于的是组件的属性
+      2.msg是属于父级的属性
+  -->
+  {{msg}}
+  <child :title="msg" a="1"></child>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+  // 组件特点：相互独立 两个人之间没有任何关系
+  // 组件的数据传递
+  // 子组件不能直接更改父组件的数据，可以子组件传递给父组件 父组件改变后在重新渲染子组件
+  // 单向数据流 父组件变化刷新子组件
+  let vm = new Vue({
+      el:'#app',
+      data:{
+        msg:'老子'
+      },
+      components:{
+          child:{
+              template:'<div>儿子 打 {{title}} <button @click="hit">打</button> </div>',
+              props:['title','a'], //会在当前组件上声明一个title变量 this.title="老子"
+              methods:{
+                  hit(){
+                      this.title = '受伤的老子'
+                  }
+              }
+          }
+      }
+  })
+</script>
+</body>
+</html>

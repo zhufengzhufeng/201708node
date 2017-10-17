@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<div id="app">
+  <!--ref放到原生dom上可以获取元素 放在组件上可以获取当前组件-->
+  <child ref="child"></child>
+  <button @click="hit">打</button>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+  let child = {
+      template:'<div>儿子</div>',
+      data(){return {a:1}},
+      methods:{
+          hit(){alert('hit')}
+      }
+  };
+  let vm = new Vue({
+      el:'#app',
+      methods:{
+        hit(){
+            this.$refs.child.hit();
+        }
+      },
+      components:{
+          child
+      }
+  });
+</script>
+</body>
+</html>

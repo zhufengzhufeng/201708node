@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app"></div>
+<!--template中的内容 会被转化成 虚拟dom，文档碎片，先获取第一个元素通过createElement创建一个元素,firstChild appendChild到这个dom元素里-->
+<template id="parent">
+    <div>parent <child></child></div>
+</template>
+<template id="child">
+    <div>child</div>
+</template>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+  let child = {template:'#child'};
+  let parent = {
+      template:'#parent',
+      components:{child}
+  };
+  let vm = new Vue({
+      el:'#app',
+      template:'<parent/>',
+      components:{
+          parent
+      }
+  })
+</script>
+</body>
+</html>
