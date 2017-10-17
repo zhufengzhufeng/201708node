@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<div id="app">
+    <child1></child1>
+    <child2></child2>
+</div>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+  let obj = {a:1};//组件中不要使用同一个对象
+  let vm = new Vue({
+      el:'#app',
+      components:{
+          child1:{
+              data(){ return obj},
+              template:'<div @click="a=a+1">哥哥组件 {{this.a}}</div>'
+          },
+          child2:{
+              data(){ return obj},
+              template:'<div>弟弟组件 {{a}}</div>'
+          }
+      }
+  })
+</script>
+</body>
+</html>

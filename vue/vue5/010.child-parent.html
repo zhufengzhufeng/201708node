@@ -7,9 +7,10 @@
 <body>
 <div id="app">
   父 {{msg}}
-  <!--<child :msg="msg" @update:msg="val=>msg=val"></child>-->
-  <child :msg.sync="msg" ></child>
-  <!--语法糖-->
+  <child :msg="msg" @update:msg="val=>msg=val"></child>
+  <!--是上面的语法糖-->
+  <!--<child :msg.sync="msg" ></child>-->
+
 </div>
 <script src="node_modules/vue/dist/vue.js"></script>
 <script>
@@ -20,7 +21,7 @@
         child:{
             methods:{
                 fn(){
-                    this.$emit('update:msg','blue')
+                    this.$emit('update:msg','blue');
                 }
             },
             template:'<div>{{msg}} <button @click="fn">变蓝</button></div>',

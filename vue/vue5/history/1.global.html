@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <my-zfpx-component></my-zfpx-component>
+</div>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+  let my = {
+      template:`<div>{{msg}}</div>`,
+      data(){return {msg:'hello'}}
+  };
+  Vue.component('my-zfpx-component',my);
+  // 所有组件都是基于根实例的
+  new Vue({
+      el:'#app'
+  })
+</script>
+</body>
+</html>

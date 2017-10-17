@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <child :msg="'儿子'" a="1"></child>
+</div>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    // 数据永远是单向数据流
+    let vm = new Vue({
+        el:'#app',
+        components:{
+            child:{
+                data(){ // 如果想使用父亲的数据 可以新声明一个结果,或者计算出一个新值
+                    return {newMsg:this.msg}
+                },
+                computed:{
+                    b () { return this.a }
+                },
+                template:'<div><input type="text" v-model="newMsg">{{b}}</div>',
+                props:['msg','a']
+            }
+        }
+    })
+</script>
+</body>
+</html>

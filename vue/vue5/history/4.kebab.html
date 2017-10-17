@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <child ></child>
+</div>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    // 传递属性时采用驼峰命名法
+    let vm = new Vue({
+        el:'#app',
+        components:{
+            child:{
+                template:'<div>{{msgA}}</div>',
+                props:{
+                    msgA:{
+                        // required:true,
+                        default(){
+                            return {a:1}
+                        },
+                        type:[Number,String,Object,Function,Boolean],
+                        validator(){
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    {{count}}
+    <!--<child @update:count="fn" :count="count"></child>-->
+   <child :count.sync="count"></child>
+</div>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el:'#app',
+        /*methods:{
+            fn(val){ this.count = val; }
+        },*/
+        data:{count:1},
+        components:{
+            child:{
+                methods:{
+                    fn(){this.$emit('update:count',100)}
+                },
+                template:'<div>儿子  {{count}}<button @click="fn">+</button></div>',
+                props:['count']
+            }
+        }
+    })
+</script>
+</body>
+</html>

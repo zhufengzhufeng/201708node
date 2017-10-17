@@ -6,23 +6,18 @@
 </head>
 <body>
 <div id="app">
+  {{age}}
   <div></div>
   <span></span>
   <p></p>
 </div>
 <script>
+  // 数据劫持 +  compile + 发布订阅 => MVVM
   let root = document.querySelector('#app');
   let fragment = document.createDocumentFragment();
-  function getChild() {
-      let first = root.firstChild;
-      while (root.children.length){
-          if(first.nodeType==1){
-              fragment.appendChild(first);
-          }
-          first = root.firstChild
-      }
+  while (child = root.firstChild){
+      fragment.appendChild(child)
   }
-  getChild();
   console.log(fragment);
 
 </script>
