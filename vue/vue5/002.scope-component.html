@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <hello></hello>
+  <world></world>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+  let obj = {a:1};
+  let vm = new Vue({
+      el:'#app',
+      components:{ //局部组件 定义在内部的，组件之间应该是互不影响的，所以data是个函数，返回一个新对象，来避免相互引用的问题
+          // 对象是引用数据类型
+          hello:{
+            data(){ return obj},
+            template:'<div>{{a}}</div>'
+          },
+          world:{
+            data(){return obj},
+            template:'<div>{{a}} <button @click="fn">点我</button></div>',
+            methods:{
+              fn(){ // 函数中的this指向的是当前组件的实例
+                  this.a = 2;
+              }
+            }
+          }
+      }
+  })
+</script>
+</body>
+</html>

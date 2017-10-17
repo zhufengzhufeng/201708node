@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <my-zfpx></my-zfpx>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+  // Vue.filter Vue.directive
+  //1.组件的名字不能使用已经存在的标签
+  //2.一个组件就是一个对象
+  //3.名字规范 myHello会自动转化成myhello
+  //4.组件模板中必须只能 仅仅有一个根节点
+  //5.标签中的名字可以转化（短横线转驼峰-> 大小转小写）一律名字相同即可
+  //6.组件中的data必须是一个函数
+  //7.组件中的数据可以在自己的模板中使用
+  Vue.component('my-zfpx',{
+      template:'<div><button @click="fn">点我</button></div>',
+      // 用模板中的内容替换掉标签
+      methods:{
+        fn(){
+            alert(1)
+        }
+      },
+      data(){
+          return {}
+      }
+  });
+  let vm = new Vue({ //根实例 -> 组件
+      el:'#app',
+  });
+  //(beforeCreate created beforeMount mounted beforeUpdate updated beforeDestroy destroyed)
+</script>
+</body>
+</html>

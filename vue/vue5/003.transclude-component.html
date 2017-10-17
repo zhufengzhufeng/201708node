@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <parent></parent>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+  // parent => 蔬菜  child => 绿叶蔬菜  grandson => 菠菜
+  // 组件使用 是在组件父级的模板中使用
+  // 组件的使用顺序 1.引入这个组件  2.注册组件 3.在模板中使用
+  Vue.component('fruit',{template:'<span>水果</span>'});
+  let grandson = {template:'<div>菠菜</div>'};
+  let child = {
+      template:'<div>绿叶蔬菜 <grandson></grandson><fruit></fruit></div>',
+      components:{
+          grandson
+      }
+  };
+  let parent =  {
+      template:'<div>蔬菜 <child></child><fruit></fruit></div>',
+      components:{child}
+  };
+  let vm = new Vue({
+      el:'#app',
+      components:{parent}
+  });
+</script>
+</body>
+</html>

@@ -13,4 +13,3 @@ console.log(module);
 // __dirname 当前文件夹的绝对路径
 console.log(__filename,__dirname);
 
-
