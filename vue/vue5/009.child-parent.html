@@ -27,7 +27,7 @@
          child:{
              methods:{
                  update(){
-
+                    this.$emit('child-fn','blue')
                  }
              },
              template:'<div>儿子：{{color}} <button @click="update">变蓝</button></div>',
