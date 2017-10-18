@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #mask{top:0;left:0;width: 100%;height: 100%;position: fixed;background: rgba(0,0,0,.4);}
+        .dialog{position: fixed;width: 450px;height: 300px;top: 50%;left: 50%;
+            transform: translate(-50%,-50%);background: #fff;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <modal :visible="show" @x="fn"></modal>
+</div>
+<!--插槽-->
+<template id="modal">
+    <div id="mask" v-show="visible">
+        <!--默认名字叫default-->
+        <div class="dialog">
+            <button @click="close">&times;</button>
+        </div>
+    </div>
+</template>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el:'#app',
+        data:{msg:'删除',show:true},
+        methods:{
+            fn(){this.show = false}
+        },
+        components:{
+            modal:{
+                methods:{
+                    close(){
+                        this.$emit('x')
+                    }
+                },
+                template:'#modal',
+                props:{
+                    visible:{type:Boolean}
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

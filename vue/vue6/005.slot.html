@@ -5,22 +5,27 @@
     <title>Title</title>
 </head>
 <body>
+<!--ui框架 mintUI IVEW elementUI-->
 <!--具名slot-->
 <div id="app">
-    <modal>
+    <button @click="visible=true">点我啊</button>
+    <!--例如别人写好的一个模态框组件 我们来使用,我们会先引入进来,传入一些自己的内容,所以绑定的方法都是自己的-->
+    <modal :show="visible" @close="cb">
         <div>xxxxx jw xxxxxxx</div>
-        <header slot="header" @click="fn">{{msg}}</header>
+        <header slot="header">{{msg}}</header>
         <footer slot="footer">此操作危险需谨慎</footer>
         <div>xxxxx zfpx xxxxxxx</div>
     </modal>
+    <button @click="isShow=true">按钮</button>
+    <modal :show="isShow" @close="fn"></modal>
 </div>
 <!--插槽-->
 <template id="modal">
-    <div id="mask">
+    <div id="mask" v-show="show">
         <!--默认名字叫default-->
         <div class="dialog">
             <slot name="header"></slot>
-            <button>&times;</button>
+            <button @click="close">&times;</button>
             <slot name="default"></slot>
             <slot name="footer"></slot>
         </div>
@@ -36,10 +41,20 @@
 <script>
     let vm = new Vue({
         el:'#app',
-        data:{msg:'删除'},
+        data:{msg:'删除',visible:false,isShow:true},
+        methods:{
+          cb(){this.visible = false},
+            fn(){this.isShow = false}
+        },
         components:{
             modal:{
-                template:'#modal'
+                methods:{
+                  close(){
+                      this.$emit('close')
+                  }
+                },
+                template:'#modal',
+                props:['show']
             }
         }
     })
