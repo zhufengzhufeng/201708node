@@ -15,6 +15,21 @@
 </div>
 <script src="node_modules/vue/dist/vue.js"></script>
 <script>
+  let child = {
+      methods:{
+          update(){
+              this.$emit('child-fn','blue')
+          }
+      },
+      template:'<div>儿子：{{color}} <button @click="update">变蓝</button></div>',
+      props:{
+          color:{
+              type:String,
+              default:'yellow' //default不能和validate一起使用
+          },
+
+      }
+  }
   new Vue({
       el:'#app',
       data:{color:'red'},
@@ -24,21 +39,7 @@
           }
       },
       components:{
-         child:{
-             methods:{
-                 update(){
-                    this.$emit('child-fn','blue')
-                 }
-             },
-             template:'<div>儿子：{{color}} <button @click="update">变蓝</button></div>',
-             props:{
-                 color:{
-                     type:String,
-                     default:'yellow' //default不能和validate一起使用
-                 },
-
-             }
-         }
+         child
       }
   })
 </script>

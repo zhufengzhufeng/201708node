@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <child ref="c"></child>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el:'#app',
+        mounted(){ //父组件挂载完成并不能确保子组件一定渲染完成，所以在mounted中一般会加nextTick防止无法获取的最新的结果
+            this.$nextTick(()=>{
+                console.log(this.$refs.c.$el.innerHTML);
+            });
+        },
+        components:{
+            child:{
+                mounted(){
+                  this.a = 2;
+                },
+                data(){ return {a:1}},
+                template:'<header>{{a}}</header>',
+                methods:{
+                    fn(){alert('hello')}
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

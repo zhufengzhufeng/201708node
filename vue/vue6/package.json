@@ -1,0 +1,18 @@
+{
+  "name": "vue6",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.16.2",
+    "bootstrap": "^3.3.7",
+    "vue": "^2.5.2",
+    "vue-router": "^3.0.1"
+  }
+}

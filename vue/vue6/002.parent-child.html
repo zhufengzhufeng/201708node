@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <button @click="fn">点我</button>
+  <child ref="c"></child>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el:'#app',
+        methods:{
+          fn(){ //父获取子数据
+              console.log(this.$refs.c.a);
+              this.$refs.c.fn();
+          }
+        },
+        mounted(){
+          alert('vm')
+        },
+        components:{
+            child:{
+                mounted(){
+                  alert('child')
+                },
+                data(){ return {a:1}},
+                template:'<header>头部</header>',
+                methods:{
+                    fn(){alert('hello')}
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>
