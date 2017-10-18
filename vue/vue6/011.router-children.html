@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+<div id="app">
+  <div class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand">珠峰培训</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li>
+            <router-link to="/home">首页</router-link>
+          </li>
+          <li>
+            <router-link to="/profile">个人</router-link>
+          </li>
+        </ul>
+    </div>
+  </div>
+  <div class="container">
+    <router-view></router-view>
+  </div>
+</div>
+<template id="profile">
+  <div>
+    <div class="col-md-3">
+      <nav class="nav nav-stacked">
+        <li><router-link to="/profile/aboutme">关于我</router-link></li>
+        <li><router-link to="/profile/introduce">简介</router-link></li>
+      </nav>
+    </div>
+    <div class="col-md-9">
+      <!--因为是profile的子路由 所以默认找的是profile中的router-view-->
+      <router-view></router-view>
+    </div>
+  </div>
+</template>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="node_modules/vue-router/dist/vue-router.js"></script>
+<script>
+  let Home = {template:'<div>首页</div>'};
+  let Profile = {template:'#profile'};
+  let AboutMe = {template:'<div>关于我</div>'};
+  let Introduce = {template:'<div>简介</div>'};
+  let router = new VueRouter({
+      routes:[
+          {path:'/home',component:Home},
+          {
+              path:'/profile',
+              component:Profile,
+              children:[ //children的path不能加/
+                  {path:'aboutme',component:AboutMe},
+                  {path:'introduce',component:Introduce},
+              ]
+          }
+      ]
+  });
+  let vm = new Vue({
+      el:'#app',
+      router
+  })
+</script>
+</body>
+</html>

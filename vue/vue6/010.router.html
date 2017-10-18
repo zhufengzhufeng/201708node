@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <!--to动态绑定时可以放对象 tag表示编译后的标签名-->
+  <router-link :to="{path:'/home'}" tag="button">首页</router-link>
+  <router-link to="/list" tag="span">列表页</router-link>
+  <router-view></router-view>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="node_modules/vue-router/dist/vue-router.js"></script>
+<script>
+  let Home = {template:'<div>首页</div>'};
+  let List = {template:'<div>列表页</div>'};
+  let router = new VueRouter({
+    //mode:'history', // h5 pushState没有# 但是会有404,开发时采用默认hash的形式
+    routes:[
+        {path:'',component:Home}, // 配置默认显示的组件
+        {path:'/home',component:Home},
+        {path:'/list',component:List},
+        // {path:'*',component:List} //如果这样写组件是切换了 但是路径还是写错的
+        {path:'*',redirect:'/list'} //重定向 一般是404配置
+    ]
+  });
+  let vm = new Vue({
+      el:'#app',
+      router
+  })
+</script>
+</body>
+</html>

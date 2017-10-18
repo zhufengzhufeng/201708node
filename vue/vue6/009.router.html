@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <!--4.router-view会将默认匹配到的结果插到此标签内-->
+  <router-link to="/home">首页</router-link>
+  <router-link to="/list">列表页</router-link>
+  <router-view></router-view>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="node_modules/vue-router/dist/vue-router.js"></script>
+<script>
+  let Home = {template:'<div>首页</div>'}; //2.准备好需要切换的组件
+  let List = {template:'<div>列表页</div>'};
+  let routes = [ //路由表
+      {path:'/home',component:Home},
+      {path:'/list',component:List}
+  ];
+  let router = new VueRouter({ //1.创建一个VueRouter的实例
+      routes // 将路由表注入进来
+  });
+  let vm = new Vue({
+      el:'#app',
+      router //3.将路由实例放在vue实例中,在任意组件中会多两个属性
+      // this.$router this.$route
+  });
+</script>
+</body>
+</html>
