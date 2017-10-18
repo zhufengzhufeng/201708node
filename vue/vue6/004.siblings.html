@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <c1></c1>
+  <c2></c2>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+  // 父-> 子 （属性校验）
+  // 子-> 父 通过自定义事件
+  // 平级组件 发布订阅
+  // 复杂的 vuex
+
+  // 一呼百应 导致页面不好维护，只适合简单组件 就爷爷和孙子 平级就两个组件
+  //  vuex (统一状态管理 借鉴redux flux思想)
+  let EventBus = new Vue(); // 一般不采用 （混乱）
+  let vm = new Vue({
+      el:'#app',
+      components:{
+          c1:{
+              methods:{
+                  change(){
+                      EventBus.$emit('love',this.color)
+                  }
+              },
+              created(){
+                  EventBus.$on('love1',(val)=>{
+                    this.color = val;
+                  });
+              },
+              data(){return {color:'red'}},
+              template:'<div @click="change">兄弟1：color:{{color}}</div>'
+          },
+          c2:{
+              methods:{
+                change(){
+                    EventBus.$emit('love1',this.color)
+                }
+              },
+              created(){
+                  EventBus.$on('love',(val)=>{
+                      this.color = val
+                  })
+              },
+              data(){return {color:'blue'}},
+              template:'<div @click="change">兄弟2：color:{{color}}</div>'
+          }
+      }
+  })
+</script>
+</body>
+</html>
