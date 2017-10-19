@@ -7,5 +7,5 @@ import router from './router'
 new Vue({ // 创建实例
     el:'#app',
     render:h=>h(App), //用根实例替换掉app
-    router
+    router // this.$route属性  this.$router 方法
 });
