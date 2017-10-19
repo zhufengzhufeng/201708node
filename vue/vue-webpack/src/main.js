@@ -1,12 +1,9 @@
-import Vue from 'vue'; //引入vuejs 因为vue是一个第三方模块，所以不需要./方式
-// vue = runtime + compiler 如果只有runtime 体积会减少6kb
+import Vue from 'vue'; // runtime不支持template
 import App from './App.vue';
-// 可以借助.vue文件来渲染
-let vm = new Vue({
+// 引入router
+import router from './router/index.js'
+new Vue({
     el:'#app',
-    // template:'<div>Hello</div>'
-    render:h=>h(App)
-    /*render:createElement=>{
-        return createElement(App)
-    }*/
+    render:h=>h(App),
+    router
 });

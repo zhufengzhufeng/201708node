@@ -1,8 +1,6 @@
 <template>
   <div>
-    <router-link to="/home">首页</router-link>
-    <router-link to="/profile">个人</router-link>
-    <router-view></router-view>
+    Home
   </div>
 </template>
 <script>
