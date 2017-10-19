@@ -12,24 +12,24 @@
   <input type="radio" value="man" v-model="val">
   <input type="radio" value="woman" v-model="val">
   <!--template slot component keep-alive保持缓存-->
-  <keep-alive v-if="a">
     <component :is="val"></component>
-  </keep-alive>
 </div>
 <script src="node_modules/vue/dist/vue.js"></script>
 <script>
+  // created加了keep-alive 就只执行一次
+  // activated 加了keep-alive会多次执行，不加keep-alive则不执行
   let man = { // 请求四个接口 其中三个我需要缓存 还有不缓存
-      created(){alert(1)},
-      deactivated(){ // 当keep-alive移除时调用的方法
+      created(){alert(300)},
+      /*deactivated(){ // 当keep-alive移除时调用的方法
         alert(100)
-      },
+      },*/
       // 存放不需要缓存的结果
       activated(){ //不会受keep-alive干扰 如果有keep-alive依然会执行
-        alert(2);
+        alert(101);
       },
       template:'<div>男人</div>',
       beforeDestroy(){
-        alert(2)
+        alert(3)
       }
   };
   let woman = {template:'<div>女人</div>'};
