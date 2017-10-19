@@ -9,6 +9,7 @@
       <nav class="navbar-nav nav">
         <li><router-link to="/home">首页</router-link></li>
         <li><router-link to="/profile">个人</router-link></li>
+        <li><router-link to="/article">文章</router-link></li>
       </nav>
     </div>
   </nav>

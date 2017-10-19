@@ -3,10 +3,13 @@ import VueRouter from 'vue-router';
 import Home from '../components/Home.vue';
 import Profile from '../components/Profile.vue';
 import AboutMe from '../components/AboutMe.vue';
-import Introduce from '../components/Introduce.vue'
+import Introduce from '../components/Introduce.vue';
+import Article from '../components/Article.vue';
 Vue.use(VueRouter);
 let router = new VueRouter({
-    linkActiveClass:'link-active',
+    // profile/introduce  /profile/introduce
+    //linkActiveClass:'l', //改名字
+    //linkExactActiveClass:'e',
     routes:[
         // 默认路由
         {path:'',component:Home},
@@ -16,6 +19,8 @@ let router = new VueRouter({
             {path:'aboutme',component:AboutMe},
             {path:'introduce',component:Introduce}
         ]},
+        // 形参有但是是随机的  /article/:id /article/2 => {id:4} = this.$route.params
+        {path:'/article/:aid/:name',component:Article}
     ]
 });
 export default router;
