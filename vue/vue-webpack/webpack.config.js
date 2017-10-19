@@ -9,7 +9,10 @@ module.exports = {
     module:{
         rules:[
             {test:/\.js$/,use:'babel-loader',exclude:/node_modules/},
-            {test:/\.vue$/,use:'vue-loader'}
+            {test:/\.vue$/,use:'vue-loader'},
+            {test:/\.css$/,use:['style-loader','css-loader']},
+            {test:/\.less$/,use:['style-loader','css-loader','less-loader']},
+            {test:/\.(svg|eot|woff2|ttf|woff)/,use:'url-loader'}
         ]
     },
     plugins:[

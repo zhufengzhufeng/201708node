@@ -12,7 +12,8 @@
         },
         methods: {},
         computed: {},
-        components: {}
+        components: {
+        }
     }
 </script>
 <style scoped>

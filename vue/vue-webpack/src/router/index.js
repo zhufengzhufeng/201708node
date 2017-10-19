@@ -1,3 +1,24 @@
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import Home from '../components/Home.vue';
+import Profile from '../components/Profile.vue';
+Vue.use(VueRouter);
+let router = new VueRouter({
+    routes:[
+        {path:'/home',component:Home},
+        {path:'/Profile',component:Profile},
+    ]
+});
+export default router;
+
+
+
+
+
+
+
+
+/*
 import Vue from 'vue'; //应为路由需要Vue所以在当前文件中要导入vue
 import Router from 'vue-router';
 // router-link router-view 可以在全局任何地方使用
@@ -11,3 +32,4 @@ export default new Router({
         {path:'/profile',component:Profile},
     ]
 });
+*/

@@ -1,11 +1,11 @@
 <template>
   <div>
-    <router-link to="/home">首页</router-link>
-    <router-link to="/profile">个人</router-link>
+    <Tab></Tab>
     <router-view></router-view>
   </div>
 </template>
 <script>
+    import Tab from './components/Tab.vue';
     export default {
         data(){
             return {msg: 'hello'}
@@ -14,7 +14,9 @@
         },
         methods: {},
         computed: {},
-        components: {}
+        components: {
+            Tab
+        }
     }
 </script>
 <style scoped>
