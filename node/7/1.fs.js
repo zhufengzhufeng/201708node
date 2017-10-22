@@ -11,7 +11,7 @@ let fs = require('fs');
 */
 // 同步 异步的结果
 // 回调套回调 promise可以解决回调地狱
-// promise 1)同步 异步的结果 2)可以解决回调地狱
+// promise 1)合并异步的结果 2)可以解决回调地狱
 let school = {};
 fs.readFile('1.txt','utf8',function (err,name) {//error-first
     if(err)return console.log(err);
