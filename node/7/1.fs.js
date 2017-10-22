@@ -14,12 +14,12 @@ let fs = require('fs');
 // promise 1)同步 异步的结果 2)可以解决回调地狱
 let school = {};
 fs.readFile('1.txt','utf8',function (err,name) {//error-first
-    if(err)return console.err;
+    if(err)return console.log(err);
     school.name = name;
     out();
 });
 fs.readFile('2.txt','utf8',function (err,age) {//error-first
-    if(err)return console.err;
+    if(err)return console.log(err);
     school.age = age;
     out();
 });
