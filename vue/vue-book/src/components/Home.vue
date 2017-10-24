@@ -1,9 +1,10 @@
 <template>
   <div>
-    首页
+    <MHeader :back="true">首页111</MHeader>
   </div>
 </template>
 <script>
+    import MHeader from '../base/MHeader.vue'
     export default {
         data(){
             return {msg: 'hello'}
@@ -12,7 +13,7 @@
         },
         methods: {},
         computed: {},
-        components: {}
+        components: {MHeader}
     }
 </script>
 <style scoped>
