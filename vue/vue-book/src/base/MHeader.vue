@@ -9,7 +9,8 @@
     export default {
         props:{
             back:{
-                type:Boolean
+                type:Boolean,
+                default:false
             }
         },
         methods: {
@@ -20,7 +21,7 @@
     }
 </script>
 <style scoped lang="less">
-  .header{height: 50px;background: #809399;color: #fff;text-align: center;line-height: 50px;position: relative;
+  .header{height: 50px;background: #809399;color: #fff;text-align: center;line-height: 50px;position: fixed;width: 100%;
     i{
       position: absolute;
       left: 20px;font-size: 20px;

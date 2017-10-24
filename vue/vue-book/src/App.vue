@@ -21,4 +21,12 @@
   ul,li{list-style: none}
   input,button{-webkit-appearance: none}
   html,body{font-size: 14px;width: 100%;height: 100%;overflow: hidden;}
+  .content{
+    position: fixed;
+    top:50px;
+    left: 0;
+    right: 0;
+    bottom: 60px;
+    overflow-y:scroll;
+  }
 </style>
