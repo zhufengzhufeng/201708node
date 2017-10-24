@@ -16,6 +16,7 @@
         swiperOption: {
           loop:true,
           autoplay: 3500,
+          autoplayDisableOnInteraction: false,
           setWrapperSize :true,
           pagination : '.swiper-pagination',
           observeParents:true,

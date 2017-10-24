@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--script 标签 css  src-->
+<!--通过js动态创建script标签，通过script没有跨域限制 所有可以引入外部的js-->
+<script>
+  function v(data) {
+    console.log(data);
+  };
+  let oScript = document.createElement('script');
+  oScript.src="http://localhost:3000/jsonp?a=v";
+  document.body.appendChild(oScript);
+  // jsonp要求函数必须是全局函数
+</script>
+</body>
+</html>
