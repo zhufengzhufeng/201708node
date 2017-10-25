@@ -1,6 +1,6 @@
 <template>
   <ul>
-  <router-link to="/home" tag="li">
+  <router-link to="/" exact tag="li">
     <i class="iconfont icon-shouye"></i>
     <span>首页</span>
   </router-link>
