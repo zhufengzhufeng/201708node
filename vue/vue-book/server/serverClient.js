@@ -34,6 +34,15 @@ http.createServer(function (req,res) {
         }
         break;
       case 'POST':
+        //获取客户端传递过来的数据
+        let str ="";
+        req.on('data',function (chunk) {
+          str+=chunk;
+        });
+        req.on('end',function () {
+          let book = JSON.parse(str);
+          console.log(book);
+        })
         break;
       case 'DELETE':
         break;
