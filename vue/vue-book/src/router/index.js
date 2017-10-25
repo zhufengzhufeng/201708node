@@ -5,7 +5,7 @@ import Home from '../components/Home.vue';
 import List from '../components/List.vue';
 import Add from '../components/Add.vue';
 import Collect from '../components/Collect.vue';
-
+import Detail from '../components/Detail.vue';
 // coding split
 export default new Router({
   routes: [
@@ -14,6 +14,7 @@ export default new Router({
     {path:'/list',component:List},
     {path:'/add',component:Add},
     {path:'/collect',component:Collect},
+    {path:'/detail/:id',component:Detail,name:'detail'},
     {path:'*',redirect:'/home'} // 路由的重定向
   ]
 })

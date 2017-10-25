@@ -11,8 +11,8 @@
             <p>{{book.bookInfo}}</p>
             <span>{{book.bookPrice}}</span>
             <div>
-              <a>详情</a>
-              <a>删除</a>
+              <router-link  :to="{name:'detail',params:{id:book.id}}">详情</router-link>
+              <a @click="remove(book.id)">删除</a>
             </div>
           </div>
         </li>
@@ -40,6 +40,12 @@
                 this.books = res.data;
                 this.isLoading = false;
               });*/
+            },
+            remove(id){
+                // 通过id删除某一项 成功后将页面上原有的数据也一并删除
+              axios.delete('/api/book?id='+id).then(res=>{
+                this.books = this.books.filter(item=>item.id!==id);
+              });
             }
         },
         computed: {},
