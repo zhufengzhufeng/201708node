@@ -1,7 +1,9 @@
 <template>
   <!--根据不同的路由 显示不同的组件-->
   <div>
-    <router-view></router-view>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
     <!--使用组件-->
     <Tab></Tab>
   </div>

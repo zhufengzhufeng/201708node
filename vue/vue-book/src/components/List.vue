@@ -31,6 +31,9 @@
         created(){
             this.getBooks();
         },
+        activated(){  // 存放不需要缓存的方法
+          this.getBooks();
+        },
         methods: {
             async getBooks(){
               let res = await axios.get('/api/book');
