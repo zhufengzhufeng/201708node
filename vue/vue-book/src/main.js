@@ -18,10 +18,11 @@ Vue.use(VueLazyload, {
   attempt: 1
 });
 
-
+import store from './vuex'
 new Vue({
   el: '#app',
   router,
+  store,
   ...App //将App组件展开放到根实例上
   // render:(h)=>h(App)
 });
