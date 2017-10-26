@@ -5,6 +5,7 @@ export default { // []会将里面的内容作为变量
     let flag = state.collects.some(item=>item.id===book.id);
     if(flag) return; //如果存在了则return
     state.collects.push(book);
+    localStorage.setItem('c',JSON.stringify(state.collects))
   },
   [Types.REMOVE_COLLECT](state){ // 删除
 

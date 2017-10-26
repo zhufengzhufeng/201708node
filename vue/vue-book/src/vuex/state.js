@@ -1,3 +1,3 @@
 export default {
-  collects:[]
+  collects:JSON.parse(localStorage.getItem('c')) || []
 }

@@ -1,9 +1,10 @@
 <template>
   <div>
-    收藏
+    {{collects}}
   </div>
 </template>
 <script>
+    import {mapState} from 'vuex'
     export default {
         data(){
             return {msg: 'hello'}
@@ -11,7 +12,9 @@
         created(){
         },
         methods: {},
-        computed: {},
+        computed: {
+          ...mapState(['collects'])
+        },
         components: {}
     }
 </script>

@@ -14,6 +14,7 @@
               <router-link  :to="{name:'detail',params:{id:book.id}}">详情</router-link>
               <a @click="remove(book.id)">删除</a>
             </div>
+            <i style="color:red" @click="add(book)">加入收藏</i>
           </div>
         </li>
       </ul>
@@ -24,9 +25,11 @@
     import MHeader from '../base/MHeader.vue';
     import Loading from '../base/Loading.vue';
     import axios from 'axios';
+    import {mapMutations} from 'vuex';
+    import * as Types from '../vuex/mutation-types'; //宏
     export default {
         data(){
-            return {books:[],isLoading:true}
+            return {books:[],isLoading:true};
         },
         created(){
             this.getBooks();
@@ -35,6 +38,11 @@
           this.getBooks();
         },
         methods: {
+            ...mapMutations([Types.ADD_COLLECT]), //将mutation中的方法映射到组件内部
+            add(book){
+              this[Types.ADD_COLLECT](book);
+              this.$router.push('/collect'); //跳转收藏页面
+            },
             async getBooks(){
               let res = await axios.get('/api/book');
               this.books = res.data;
